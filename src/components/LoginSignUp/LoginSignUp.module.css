@@ -21,7 +21,7 @@
 }
 
 .loginContainer form {
-  width: 33%;
+  width: 42%;
   background-color: rgba(254, 254, 252, 0.8);
   padding: 30px;
   border-radius: 5px;
@@ -105,7 +105,7 @@
 
 @media only screen and (max-width: 950px) {
   .loginContainer form {
-    width: 56%;
+    width: 75%;
   }
 
   .backHome {
