@@ -1,0 +1,15 @@
+.header{
+  margin: auto;
+  width: 90%;
+  height: 13%;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-top: 10px;
+ }
+
+ .heading{
+  font-size: 1.563rem;
+  font-weight: 700;
+  color: #B1BDAD;
+ }

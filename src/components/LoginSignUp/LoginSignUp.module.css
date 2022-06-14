@@ -1,0 +1,119 @@
+
+.loginContainer {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding-top: 50px;
+  padding-bottom: 100px;
+  position: relative;
+}
+
+.loginContainer::before {
+  content: "";
+  position: absolute;
+  top: 0px;
+  right: 0px;
+  left: 0px;
+  bottom: 0px;
+  background-image: url("../assets/bg.jpeg");
+  background-size: contain;
+  opacity: .60;
+}
+
+.loginContainer form {
+  width: 33%;
+  background-color: rgba(254, 254, 252, 0.8);
+  padding: 30px;
+  border-radius: 5px;
+  position: relative;
+}
+
+.backHome {
+  font-size: 12px;
+  margin-right: auto;
+  margin-left: 200px;
+  cursor: pointer;
+  background-color: rgba(254, 254, 252, 0.9);
+  padding: 15px;
+  border-radius: 5px;
+  display: inline-flex;
+  align-items: center;
+  position: relative;
+}
+
+.backHome span {
+  margin-left: 7px;
+}
+
+.backHome:hover {
+  color: #B1BDAD;
+}
+
+.selectionSignIn {
+  text-align: center;
+  position: relative;
+}
+
+.selectionSignIn label {
+  margin-right: 20px;
+  font-size: 13px;
+}
+
+.inputFields {
+  margin-top: 30px;
+}
+
+.inputFields input {
+  padding: 7px;
+  border: none;
+  border-bottom: 3px solid #DFDDD2;
+  background-color: transparent;
+}
+
+.inputButton {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.btnDivider {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  color: #DFDDD2;
+}
+
+.btnDivider hr {
+  width: 50px;
+  border: 1px solid #DFDDD2;
+}
+
+.inputButton .facebook {
+  background-color: #4B4E6D;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 15px;
+  border: none;
+  padding: 13px;
+  margin-top: 20px;
+  color: white;
+  width: 60%;
+  border-radius: 5px;
+  box-shadow: rgba(149, 157, 165, 0.2) 0px 8px 24px;
+}
+
+@media only screen and (max-width: 950px) {
+  .loginContainer form {
+    width: 56%;
+  }
+
+  .backHome {
+    margin-bottom: 18px;
+    margin-left: 30px;
+  }
+
+  .inputButton .facebook {
+    width: 90%;
+  }
+}

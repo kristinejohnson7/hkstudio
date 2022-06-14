@@ -1,0 +1,94 @@
+.cartContainer {
+  width: 48%;
+  height: 80%;
+  border-radius: 20px;
+  box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;
+  margin-top: 20px;
+  background-color: #FEFEFC;
+  overflow: scroll;
+  margin-bottom: 50px;
+ }
+
+ .header{
+  margin: auto;
+  width: 90%;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+ }
+
+ .header h5 {
+   width: 81px;
+ }
+
+ .action{
+  font-size: 0.875rem;
+  font-weight: 600;
+  color: #B1BDAD;
+  cursor: pointer;
+  border-bottom: 1px solid #B1BDAD;
+ }
+
+ .cartItems {
+  margin-top: -20px;
+  margin-bottom: 50px;
+}
+
+.confirmContainer {
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+  align-items: center;
+  margin-bottom: 50px;
+}
+
+.confirmHR {
+  width: 80%;
+  border: 2px;
+  border: 1px solid #DFDDD2;
+}
+
+.confirmInfoContainer {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  margin-top: 40px;
+  text-align: center;
+  width: 60%;
+}
+
+.confirmContainer img {
+    width: 13%;
+}
+
+.confirmInfoContainer h2 {
+  color: #B1BDAD;
+}
+
+.confirmContainer button {
+  margin-top: 30px;
+}
+
+
+@media only screen and (max-width: 900px) {
+  .cartContainer {
+    width: 70%;
+  }
+}
+
+@media only screen and (max-width: 475px) {
+  .cartContainer {
+    width: 84%;
+  }
+}
+
+@media only screen and (max-width: 375px) {
+  .header {
+    flex-wrap: wrap;
+  }
+
+  .header h5 {
+    margin-top: -10px;
+  }
+}

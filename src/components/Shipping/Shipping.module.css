@@ -1,0 +1,22 @@
+.cartBg{
+  height: 100vh;
+  padding-top: 50px;
+}
+
+.cartAndSummaryContainer {
+  padding-top: 10px;
+  display: flex;
+  justify-content: center;
+  gap: 20px;
+  height: 100vh;
+}
+
+ @media only screen and (max-width: 900px) {
+  .cartAndSummaryContainer {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 20px;
+    height: initial;
+  }
+}

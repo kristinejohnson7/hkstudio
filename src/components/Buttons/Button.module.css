@@ -1,0 +1,12 @@
+.standardBtn {
+  padding: 10px;
+  background: transparent;
+  cursor: pointer;
+  color: black;
+  border: 2px solid #DFDDD2;
+  box-shadow: rgba(27, 31, 35, 0.04) 0px 1px 0px, rgba(255, 255, 255, 0.25) 0px 1px 0px inset;
+}
+
+.standardBtn:hover {
+  border: 2px solid #B1BDAD;
+}

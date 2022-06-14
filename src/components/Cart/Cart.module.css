@@ -1,0 +1,155 @@
+.cartBg{
+  height: 100vh;
+  padding-top: 50px;
+}
+
+.cartAndSummaryContainer {
+  padding-top: 10px;
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+  gap: 20px;
+  height: 100vh;
+}
+
+ .cartPriceContainer {
+  width: 29%;
+  height: 90%;
+  border-radius: 20px;
+  box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;
+  margin-top: 20px;
+  background-color: #FEFEFC;
+  overflow: scroll;
+ }
+
+ .promoContainer {
+  margin-left: 37px;
+}
+
+.promoContainer .promoFlex input {
+  width: 107%;
+}
+
+.promoFlex {
+  display: flex;
+  gap: 62px;
+  margin-bottom: 30px;
+}
+
+.promoFlex button {
+  width: 80px;
+}
+
+.cartPriceContainer hr {
+  width: 80%;
+  border: 1px solid #DFDDD2;
+  margin-bottom: 17px;
+}
+
+ .summaryContent {
+   padding: 20px;
+ }
+
+ .itemNameAndQuantity h5, p {
+  margin: 0;
+  padding: 0;
+}
+
+.itemNameAndQuantity p {
+  font-size: 12px;
+}
+
+ .cartShipping, 
+ .cartDiscount,
+ .cartTotal,
+ .cartSubTotal {
+   padding-right: 20px;
+   padding-left: 20px;
+ }
+
+ .itemSummary,
+ .cartSubTotal,
+ .cartShipping,
+ .cartDiscount,
+ .cartTotal {
+   display: flex;
+   justify-content: space-between;
+   margin-bottom: 10px;
+   align-items: center;
+ }
+
+.cartDiscount p:nth-child(2) {
+   font-weight: 500;
+   color: #16558A;
+ }
+
+ .cartTotal p {
+  font-weight: 600;
+ }
+
+ .checkoutBtn button { 
+   text-align: center;
+   display: flex;
+   justify-content: center;
+   margin: 45px auto;
+   width: 60%;
+   border: none;
+   padding: 15px;
+   border-radius: 5px;
+   background-color: #B1BDAD;
+   color: #FEFEFC;
+   box-shadow: rgba(149, 157, 165, 0.2) 0px 8px 24px;
+ }
+
+ .checkoutBtn button:hover {
+  background-color: #DFDDD2;
+  color: white;
+}
+
+
+@media only screen and (max-width: 1000px) {
+  .promoContainer .promoFlex input {
+    width: 70%;
+  }
+
+  .promoFlex {
+    gap: 0;
+  }
+
+  .promoContainer button {
+    width: 70px;
+    margin-left: -23px;
+  }
+}
+
+@media only screen and (max-width: 900px) {
+  .cartAndSummaryContainer {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 20px;
+    height: initial;
+  }
+
+  .cartPriceContainer {
+    width: 55%;
+  }
+}
+
+@media only screen and (max-width: 475px) {
+  .cartPriceContainer {
+    width: 78%;
+  }
+
+  .promoFlex {
+    flex-direction: column;
+    align-items: center;
+    margin-top: 20px;
+  }
+
+  .promoContainer button {
+    margin-top: 20px;
+  }
+}
+
+

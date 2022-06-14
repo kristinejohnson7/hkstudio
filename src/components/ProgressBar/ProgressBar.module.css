@@ -1,0 +1,24 @@
+.containerStyles, 
+.fillerStyles {
+  border-radius: 1rem;
+}
+
+.containerStyles {
+  height: 20;
+  width: 60%;
+  background-color: #E0E0de;
+  margin: auto;
+}
+
+.fillerStyles {
+  height: 100%;
+  padding: 5px;
+  text-align: right;
+  background-color: rgba(22, 86, 138, 0.5);
+}
+
+.labelStyles {
+  padding: 17px;
+  color: white;
+  font-weight: bold;
+}

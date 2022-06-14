@@ -1,0 +1,91 @@
+
+.paymentForm {
+  display: flex;
+  flex-direction: column;
+  margin-left: 100px;
+  margin-bottom: 50px;
+  max-width: 730px;
+ }
+
+.paymentForm input {
+  width: 70%;
+}
+
+.countrySelect {
+  margin-top: 40px;
+  margin-left: 30px;
+}
+
+.countrySelect label {
+  font-size: 0.875rem;
+}
+
+.countrySelect select {
+  width: 50%;
+}
+
+.expItems select, 
+.countrySelect select {
+ border: 2px solid #DFDDD2;
+ border-radius: 3px;
+ font-family: 'Jost', sans-serif;
+ padding: 5px;
+ background-color: transparent;
+ margin-left: 15px;
+}
+
+.expItems select {
+  width: 15%;
+}
+
+.shippingSelection h3{
+  margin-left: -60px;
+}
+
+.shippingRadioBtns {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.shippingRadioBtns label input {
+  width: 5%;
+}
+
+.shippingRadioBtns label span {
+  font-size: 0.875rem;
+  margin-left: 10px;
+}
+
+.expDate, .cvv {
+  margin-top: 15px;
+  font-size: 0.875;
+  display: flex;
+  flex-direction: column;
+}
+
+.expDate label {
+  margin-bottom: 15px;
+}
+
+@media only screen and (max-width: 900px) {
+  .paymentForm {
+    margin-left: 30px;
+  }
+
+  .countrySelect {
+    margin-left: -3px;
+  }
+
+  .shippingSelection {
+    width: 80%;
+    margin-left: 50px;
+  }
+}
+
+@media only screen and (max-width: 400px) {
+  .shippingSelection {
+    margin-left: 35px;
+  }
+
+}

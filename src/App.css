@@ -1,0 +1,32 @@
+ul {
+  list-style-type: none;
+}
+
+.inputWrapper {
+  display: flex;
+  flex-direction: column;
+  margin-top: 15px;
+  position: relative;
+}
+
+.inputWrapper label {
+  font-size: 14px;
+}
+
+.locationContainer {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 20px;
+}
+
+ #shippingForm .locationContainer input {
+  width: 13.3rem;
+}
+
+.container {
+  margin-right: auto;
+  margin-left: auto;
+  max-width: 1200px;
+  margin-bottom: 100px;
+}

@@ -1,0 +1,95 @@
+.cartPriceContainer {
+  width: 29%;
+  height: 83%;
+  border-radius: 20px;
+  box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;
+  margin-top: 20px;
+  background-color: #FEFEFC;
+  overflow: scroll;
+ }
+
+ .summaryContent {
+  padding: 20px;
+  margin-top: -30px;
+}
+
+.itemNameAndQuantity h5 {
+  margin: 0;
+  margin-bottom: 7px;
+}
+
+.itemSummary .itemNameAndQuantity img {
+  width: 70px;
+  height: 70px;
+}
+
+.cartShipping, 
+.cartTotal,
+.cartSubTotal {
+  padding-right: 20px;
+  padding-left: 20px;
+}
+
+.itemNameAndQuantity,
+.cartSubTotal,
+.cartShipping,
+.cartTotal {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 10px;
+  align-items: center;
+}
+
+.cartTotal p {
+  font-weight: 700;
+}
+
+.pricingInfo {
+  text-align: right;
+}
+
+.pricingInfo p {
+  font-size: 0.75rem;
+}
+
+.cartPriceContainer hr {
+  width: 80%;
+  border: 1px solid #DFDDD2;
+  margin-bottom: 17px;
+}
+
+.paymentCardDetails {
+  margin-left: 46px;
+}
+
+.shippingAddress {
+  margin-left: 50px;
+  margin-bottom: 20px;
+  margin-top: -10px;
+}
+
+.shippingMethod h3 {
+  margin: 0;
+  padding: 0;
+}
+
+.deliveryText {
+  margin-left: 50px;
+  margin-bottom: 50px;
+}
+
+.deliveryText p {
+  margin-top: -15px;
+}
+
+@media only screen and (max-width: 900px) {
+  .cartPriceContainer {
+    width: 70%;
+  }
+}
+
+@media only screen and (max-width: 600px) {
+  .cartPriceContainer {
+    width: 84%;
+  }
+}

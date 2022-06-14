@@ -1,0 +1,39 @@
+.inputWrapper {
+  display: flex;
+  flex-direction: column;
+  margin-top: 15px;
+  position: relative;
+  max-width: 700px;
+}
+
+.inputWrapper label {
+  font-size: 14px;
+}
+
+.passwordIcon {
+  position: absolute;
+  top: 20px;
+  right: 0;
+  cursor: pointer;
+  z-index: 100;
+}
+
+.error {
+  color: #16558A;
+  font-weight: 600;
+  font-size: 12px;
+  margin-top: 4px;
+  letter-spacing: 0.9px;
+  overflow-wrap: break-word;
+}
+
+input:focus {
+  outline: none;
+}
+
+input {
+  padding: 7px;
+  border: none;
+  border-bottom: 3px solid #DFDDD2;
+  background-color: rgba(254, 254, 252, 0.95);
+}

@@ -1,0 +1,21 @@
+.paymentPage {
+  padding-top: 50px;
+}
+
+.confirmContainer {
+  padding-top: 10px;
+  display: flex;
+  justify-content: center;
+  gap: 20px;
+  height: 100vh;
+}
+
+@media only screen and (max-width: 900px) {
+  .confirmContainer {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 20px;
+    height: initial;
+  }
+}
