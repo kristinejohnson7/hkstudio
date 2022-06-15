@@ -1,70 +1,70 @@
-# Getting Started with Create React App
+This project was created for Devslopes Academy. Real pictures from local artist Haley Klein Studios are included.
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+🔍 This project focuses on a few major principles:
 
-## Available Scripts
+Forms and form validation with React
+Building stateful components
+Passing data between components
 
-In the project directory, you can run:
+🛠 Requirements:
+You will build a 5-part checkout form.
 
-### `npm start`
+Signup/Login
+Customer cart
+Shipping information
+Payment information
+Confirmation
+Must include the "progress bar" as shown in the SHIPPING & PAYMENT mockup below.
+Note: Please do NOT use React Routing in this project. You will learn about it later. The goal is to master components, props, state and conditional UI rendering.
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+🛠 Signup/Login
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
+User can sign-in
+Password field is obscured
+There is an "eye" icon next to password to reveal what is being typed
+If password is invalid, show an error message as depicted in the screenshot below
+If successful sign-in, take user to Customer Cart
+User can switch between Sign in and Create Account
+If creating an account there will be two password fields
+Passwords must match or show appropriate error as depicted below
+First name and last name cannot have numbers
+Postal code must not allow text (numbers only)
+Show an "eye" icon next to password to reveal what is being typed
+If an account for that email already exists, show an error message
+Add a facebook sign in button (non-functional).
 
-### `npm test`
+🛠 Customer Cart
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+Create a cart that has 2-5 items in it
+These should be actual components with item value
+The total sum of all items should be calculated as a total
+Items can be removed and quantities can be increased or decreased -- cart total should adjust accordingly
+If there are zero cart items the Checkout button should be disabled
+If Checkout is selected move to the shipping screen
 
-### `npm run build`
+🛠 Shipping Information
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+Show all shipping fields as depicted in the screenshot below
+Have standard and express shipping options -- the shipping & handling/checkout prices should adjust accordingly
+Ensure phone fields cannot take text (only numbers)
+Ensure postal code cannot take text (only numbers)
+Make sure all fields are completed or prevent the user from moving forward. Show appropriate error messages
+Back to cart button should go back to cart
+There should be a Next or "Payment" button to go to next screen
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+🛠 Payment Information
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+Create a credit card formatted that takes all major credit cards (Visa, Master Card, American Express, etc)
+Format the credit card field so the numbers are properly spaced (we don't want it to look ugly!)
+Have a dropdown for month and year for expiration dates
+Show errors if fields are entered incorrectly
+The Pay button should show the total price. If the fields are not complete this button should be disabled
+Make sure to show the cart/total at the right (or somewhere else)
+The Pay button should take the user to the confirmation screen
+A user should be able to apply a promo code and receive a discount.
 
-### `npm run eject`
+🛠 Confirmation Screen
 
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
-
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
-
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
-
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
-
-## Learn More
-
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
-
-### Code Splitting
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
-
-### Analyzing the Bundle Size
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
-
-### Making a Progressive Web App
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
-
-### Advanced Configuration
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
-
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `npm run build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+Should show amount paid
+Should show last 4 digits of credit card used to make the purchase
+Add other UI as depicted below
