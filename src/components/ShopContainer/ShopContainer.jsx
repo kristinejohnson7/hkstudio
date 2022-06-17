@@ -1,11 +1,11 @@
 import React from "react";
-import Cart from "../Cart/Cart"
-import LoginSignUp from "../LoginSignUp/LoginSignUp"
 import ShopDisplay from "../ShopDisplay/ShopDisplay"
-import Shipping from "../Shipping/Shipping"
 import { shopComponents } from "../variables";
-import Payment from "../Payment/Payment"
-import ConfirmPayment from "../ConfirmPayment/ConfirmPayment"
+import ProductData from "../../products";
+import Checkout from "../Checkout/Checkout";
+
+
+const products = new ProductData();
 
 class ShopContainer extends React.Component {
   constructor(){
@@ -14,13 +14,16 @@ class ShopContainer extends React.Component {
     this.state = {
       ...shopComponents,
       promoError: false,
-      user: undefined,
+      // user: undefined,
       cartIds: [],
       shippingInfo: {},
       deliveryCost: 0,
       paymentInfo: {},
       discountAmount: 0,
       discountType: 0,
+      loading: false,
+      error: false, 
+      products: [],
     }
   }
 
@@ -31,6 +34,25 @@ class ShopContainer extends React.Component {
         [sub]: state,
       }
     }))
+  }
+
+  componentDidMount() {
+    this.setState({loading: true})
+    products.fetchProductItems()
+      .then((res) => {
+        if (res && res.response.ok) {
+          this.setState({
+            products: res.data,
+            loading: false
+          })
+          // console.log("inside Data", res.data)
+        } else {
+          this.setState({loading: false});
+        }
+      }, (error) => {
+        console.log(error);
+        this.setState({loading: false, error: true})
+      })
   }
 
   showLogin = (toggled) => {
@@ -166,27 +188,40 @@ class ShopContainer extends React.Component {
   }
 
   render() {
-    const {paymentInfo, shopDisplay, confirm, login, cart,
-       cartIds, shipping, deliveryCost, payment, shippingInfo, user,  discountType, promoError, discountAmount} = this.state
+    const { paymentInfo, shopDisplay, confirm, login, cart,
+       cartIds, shipping, deliveryCost, payment, shippingInfo, user,  discountType, promoError, discountAmount, products, loading} = this.state
     
     const filtered = shopDisplay.items.filter((item) => cartIds.find((cart) => cart.id === item.key));
 
     return (
       <div >
-        {shopDisplay.display && 
+        <ShopDisplay 
+        cartIds={cartIds}
+        routeChange={this.props.routeChange}
+        onRemoveFromCart={this.removeItemFromCart}
+        showCart={this.showCart}
+        onCart={this.addItemToCart} 
+        onLogin={this.showLogin} 
+        products={products}
+        loading={loading}
+        user={this.props.user}/>
+        <Checkout />
+        {/* {shopDisplay.display && 
         <ShopDisplay 
         cartIds={cartIds}
         onRemoveFromCart={this.removeItemFromCart}
         showCart={this.showCart}
         onCart={this.addItemToCart} 
         onLogin={this.showLogin} 
-        shopItems={shopDisplay.items}
-        user={this.state.user}/>}
+        products={products}
+        loading={loading}
+        user={this.props.user}/>}
         {login.display && 
         <LoginSignUp 
         onReturn={this.showLogin}
-        onSubmit={(userData) => {this.setState({user: userData})
-        this.showLogin(false)}}/>}
+        onSubmit={(userData) => 
+          {this.setState({user: userData})
+        this.showLogin(false)}}/>} 
         {cart.display &&
         <Cart
         cartIds={cartIds}
@@ -244,7 +279,7 @@ class ShopContainer extends React.Component {
           userEmail={user.email}
           shippingInfo={shippingInfo}
           backToShopFromConfirm={this.backToShopFromConfirm}
-        />}
+        />} */}
       </div>
     )
   }

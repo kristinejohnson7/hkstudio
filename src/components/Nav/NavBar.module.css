@@ -18,6 +18,10 @@
   background-color: #EDECE8;
   box-shadow: rgba(0, 0, 0, 0.05) 0px 6px 24px 0px, rgba(0, 0, 0, 0.08) 0px 0px 0px 1px;
   width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: relative;
 }
 
 .navItems {
@@ -34,6 +38,15 @@
 .navItems li:hover {
   color: #C1CDBF;
 }
+
+.cartNav {
+  text-align: right;
+  position: relative;
+  right: -180px;
+  background-color: transparent;
+  border: none;
+}
+
 
 @media only screen and (max-width: 600px) {
   .navItems {

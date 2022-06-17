@@ -2,6 +2,7 @@ import React from "react";
 import InputLabel from "../Form/InputLabel";
 import { onlyTextValidation, onlyNumberValidation, passwordValidation } from "../validations"
 import { fakeUser } from "../variables";
+import { Link } from "react-router-dom"
 import s from "./LoginSignUp.module.css"
 import CheckoutButton from "../Buttons/CheckoutButton";
 
@@ -139,6 +140,7 @@ class LoginSignUp extends React.Component {
             <i className="fa-solid fa-angle-left"></i>
             <span>Back</span>
           </div>
+          {this.props.user ? <div>YOU ARE ALREADY LOGGED IN </div> :
           <form onSubmit={this.formSubmit}>
             <div className={s.selectionSignIn}>
               <h4>New User? Create an Account!</h4>
@@ -188,7 +190,7 @@ class LoginSignUp extends React.Component {
                 SIGN IN WITH FACEBOOK
               </button>
             </div>
-          </form>
+          </form>}
         </div>
     )
   }

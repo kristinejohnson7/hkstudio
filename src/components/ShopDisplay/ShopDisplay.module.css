@@ -5,19 +5,75 @@ h2, h3 {
 }
 
 .shopHeader {
-  margin-top: 40px;
   margin-bottom: 40px;
   text-align: center;
+  margin-top: -20px;
 }
 
 .shopHeader p {
-  width: 45%;
   margin-right: auto;
   margin-left: auto;
 }
 
-.shopHeader button {
+.productSearch {
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  margin-bottom: 90px;
+}
+
+.collectionBtnContainer {
+  margin-top: 30px;
+  font-size: 12px;
+  /* display: flex;
+  flex-direction: column;
+  align-items: start; */
+}
+
+.collectionBtnContainer p {
+  text-align: left;
+}
+
+.btnContainer {
+  margin-top: 15px;
+  display: flex;
+  gap: 7px;
+  justify-content: center;
+}
+
+.collectionBtnContainer .btnContainer button {
+  border: 2.5px solid #B1BDAD;
+}
+
+.collectionBtnContainer .btnContainer button:hover {
+  border: 3px solid #B1BDAD;
+}
+
+.searchInput {
+  margin-top: 31px;
+  display: flex;
+  flex-direction: column;
+}
+
+.searchInput label {
+  font-size: 12px;
+  text-align: right;
+}
+
+.searchInput input {
+  width: 270px;
+  border-bottom: 3px solid #B1BDAD;
+  background-color: transparent;
+}
+
+.loginBtn {
+  margin-top: 20px;
+  display: none;
+}
+
+.loginBtn button {
   width: 10%;
+  margin: 20px auto;
 }
 
 .shopItems {
