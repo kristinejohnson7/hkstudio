@@ -1,11 +1,14 @@
 import React from "react";
 // import s from "./ProgressBar.module.css"
+import ProgressBar from "../ProgressBar/ProgressBar"
+import { Outlet } from "react-router-dom";
 
 const Checkout = (props) => {
 
   return (
     <div >
-      THERE HAS BEEN AN ERRROROROROROR 
+      <ProgressBar />
+      <Outlet context="false" />
     </div>
   )
 }

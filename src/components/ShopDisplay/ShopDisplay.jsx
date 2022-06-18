@@ -4,16 +4,17 @@ import NavHeader from "../Nav/NavHeader"
 import s from "./ShopDisplay.module.css"
 import { useState, useEffect } from "react"
 import CheckoutButton from "../Buttons/CheckoutButton"
+import DisplayItem from "./DisplayItem"
 
 
 function ShopDisplay(props){
-  const {user, onCart, onLogin, cartIds, onRemoveFromCart, products, loading, routeChange} = props
+  const {products, loading, routeChange, user, cartIds, onLogin, onRemoveFromCart, onCart} = props
   const [productList, setProducts] = useState([])
+  const [displayItem, setDisplayItem] = useState("")
+  const [itemPage, setItemPage] = useState(false)
 
   const handleFilter = (event) => {
     const searchWord = event.target.value;
-    console.log("searchWord", searchWord)
-    console.log("product list", productList)
     const newFilter = products.filter((value) => {
       return value.name.toLowerCase().includes(searchWord.toLowerCase());
     });
@@ -33,10 +34,23 @@ function ShopDisplay(props){
     }
   }
 
+  const handleDisplayItemClick = (e, id) => {
+    e.preventDefault()
+    console.log("handle display function")
+    setDisplayItem(products.find(product => product.id === id))
+    setItemPage(true)
+  }
+
+  const closeItemPage= (e) => {
+    e.preventDefault()
+    setItemPage(false)
+  }
+
   useEffect(() => {
     sortByCategory("All")
   }, [products])
 
+  console.log("cartIds in ShopDisplay", cartIds)
     return (
       <>
          <NavHeader />
@@ -57,26 +71,26 @@ function ShopDisplay(props){
                 <input type="text" onChange={handleFilter} />
               </div>
             </div>
-            {!user &&
-            // ? <CheckoutButton title="CART" onClick={user ? showCart : onLogin} />
-             (<div>
-            <div className={s.loginBtn}>
-              <p>Please login to add items to your cart</p>
-              <CheckoutButton title="LOG IN" onClick={() => onLogin(true)} />
-            </div>
-          </div>)}
           </div>
           <div className={s.shopItems}>
-              {!loading ? productList.map((product) => (
+            {!itemPage && !loading 
+                ? productList.map((product) => (
                 <div key={product.id} className={s.itemContainer}>
-                  <img src={product.img} alt="product-img" />
+                  <button className={s.displayItemBtn} onClick={(e) => handleDisplayItemClick(e, product.id)}>
+                    <img className={s.grow} src={product.img} alt="product-img" />
+                  </button>
                   <h3>{product.name}</h3>
                   <p>${product.price}</p>
                   {cartIds.find((cart) => cart.id === product.id) 
                   ? <Button onClick={(() => onRemoveFromCart(product.id))} title="REMOVE FROM CART" />
-                  : <Button onClick={user ? (() => onCart(product.id)) : () => routeChange("login")} title="ADD TO CART" /> }
+                  : <Button onClick={user ? (() => props.handleCartIds(product.id)) : () => routeChange("login")} title="ADD TO CART" /> }
                 </div>
               )) : <div> Loading... </div>}
+              {itemPage &&
+                <>
+                 <DisplayItem close={closeItemPage} item={displayItem} />
+                </>
+              }
           </div>
         </div>
       </>

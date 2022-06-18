@@ -12,7 +12,7 @@ function NavBar(props) {
       <ul className={s.navItems}>
           <li>About</li>
           <li>
-            <Link to="/shop">Shop</Link>
+            <Link to="/">Shop</Link>
           </li>
           <li>Contact</li>
           <li>Commissions</li>

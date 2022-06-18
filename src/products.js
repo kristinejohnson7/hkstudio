@@ -2,6 +2,7 @@ import { PUBLIC_API_KEY } from "./constants";
 
 class ProductData {
   async fetchProductItems() {
+    console.log("I am starting to process info");
     return new Promise(async (success, failure) => {
       try {
         const url = new URL("https://api.chec.io/v1/products");
