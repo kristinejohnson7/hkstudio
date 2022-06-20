@@ -1,5 +1,11 @@
+
+
 ul {
   list-style-type: none;
+}
+
+a {
+  text-decoration: none;
 }
 
 .inputWrapper {
@@ -29,4 +35,20 @@ ul {
   margin-left: auto;
   max-width: 1200px;
   margin-bottom: 40px;
+  position: relative;
+}
+
+h3 {
+  font-size: 1.3rem;
+}
+
+
+.carousel-inner {
+  height: 650px;
+  width: 500px;
+}
+
+
+.carousel-control-next, .carousel-control-prev {
+  opacity: .99;
 }

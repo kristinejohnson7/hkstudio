@@ -1,4 +1,5 @@
 import s from "./BackButton.module.css"
+import React from "react"
 
 function BackButton(props) {
   const {goBackToPage} = props

@@ -2,7 +2,7 @@ import React, { useState, useEffect } from "react";
 import ShopDisplay from "../ShopDisplay/ShopDisplay"
 import { shopComponents } from "../variables";
 import ProductData from "../../products";
-import Checkout from "../Checkout/Checkout";
+import Checkout from "../Cart/Checkout";
 
 const productCall = new ProductData();
 
@@ -124,17 +124,18 @@ function ShopContainer(props) {
   // }
 
     // const filtered = products.items.filter((item) => cartIds.find((cart) => cart.id === item.key));
-console.log("cart ids in shop container", props.cartIds)
     return (
       <div >
         <ShopDisplay 
         cartIds={props.cartIds}
+        handleIncrementAction={props.handleIncrementAction}
         routeChange={props.routeChange}
         onRemoveFromCart={props.removeItemFromCart}
-        handleCartIds={props.addItemToCart} 
+        addItemToCart={props.addItemToCart} 
         products={products}
         loading={loading}
-        user={props.user}/>
+        // user={props.user}
+        />
       </div>
     )
   

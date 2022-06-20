@@ -2,11 +2,10 @@ import { PUBLIC_API_KEY } from "./constants";
 
 class ProductData {
   async fetchProductItems() {
-    console.log("I am starting to process info");
     return new Promise(async (success, failure) => {
       try {
         const url = new URL("https://api.chec.io/v1/products");
-        let params = { limit: "25" };
+        let params = { limit: "55" };
         Object.keys(params).forEach((key) =>
           url.searchParams.append(key, params[key])
         );
@@ -21,10 +20,12 @@ class ProductData {
         });
         if (response.ok) {
           const json = await response.json();
+          console.log("json img", json.data);
           const data = json.data.map((item) => ({
             desc: item.description,
+            itemImg: item.assets,
             id: item.id,
-            img: item.image.url,
+            imgMain: item.image.url,
             name: item.name,
             price: item.price.raw,
             category: item.categories[0].name,

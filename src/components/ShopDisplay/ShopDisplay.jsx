@@ -1,14 +1,14 @@
-import React from "react";
 import Button from "../Buttons/Button"
-import NavHeader from "../Nav/NavHeader"
 import s from "./ShopDisplay.module.css"
-import { useState, useEffect } from "react"
-import CheckoutButton from "../Buttons/CheckoutButton"
+import React, { useState, useEffect, useContext } from "react"
 import DisplayItem from "./DisplayItem"
+import { UserContext } from "../Helper/Context"
 
 
 function ShopDisplay(props){
-  const {products, loading, routeChange, user, cartIds, onLogin, onRemoveFromCart, onCart} = props
+
+  const {user, setUser} = useContext(UserContext)
+  const {products, loading, routeChange, cartIds, onRemoveFromCart, handleIncrementAction} = props
   const [productList, setProducts] = useState([])
   const [displayItem, setDisplayItem] = useState("")
   const [itemPage, setItemPage] = useState(false)
@@ -36,7 +36,6 @@ function ShopDisplay(props){
 
   const handleDisplayItemClick = (e, id) => {
     e.preventDefault()
-    console.log("handle display function")
     setDisplayItem(products.find(product => product.id === id))
     setItemPage(true)
   }
@@ -50,11 +49,11 @@ function ShopDisplay(props){
     sortByCategory("All")
   }, [products])
 
-  console.log("cartIds in ShopDisplay", cartIds)
+  productList.map((product) => localStorage.setItem(product.name, product.imgMain))
+
     return (
-      <>
-         <NavHeader />
-         <div className="container">
+      <div className={s.bgContainer}>
+         <div className={`container ${s.shopWrapper}`}>
           <div className={s.shopHeader}>
             <div className={s.productSearch}>
               <div className={s.collectionBtnContainer}>
@@ -64,6 +63,7 @@ function ShopDisplay(props){
                   <Button title="Quiet The Noise" onClick={() => sortByCategory("Quiet The Noise Collection")} />
                   <Button title="Christmas"onClick={() => sortByCategory("Christmas Collection")} />
                   <Button title="New Life" onClick={() => sortByCategory("New Life Collection")} />
+                  <Button title="Spring Collection" onClick={() => sortByCategory("Spring Collection")} />
                 </div>
               </div>
               <div className={s.searchInput}>
@@ -73,27 +73,28 @@ function ShopDisplay(props){
             </div>
           </div>
           <div className={s.shopItems}>
-            {!itemPage && !loading 
-                ? productList.map((product) => (
+            {!itemPage && !loading
+                && productList.map((product) => (
                 <div key={product.id} className={s.itemContainer}>
                   <button className={s.displayItemBtn} onClick={(e) => handleDisplayItemClick(e, product.id)}>
-                    <img className={s.grow} src={product.img} alt="product-img" />
+                    <img className={s.grow} src={localStorage.getItem(product.name)} alt="product-img" />
                   </button>
                   <h3>{product.name}</h3>
                   <p>${product.price}</p>
                   {cartIds.find((cart) => cart.id === product.id) 
                   ? <Button onClick={(() => onRemoveFromCart(product.id))} title="REMOVE FROM CART" />
-                  : <Button onClick={user ? (() => props.handleCartIds(product.id)) : () => routeChange("login")} title="ADD TO CART" /> }
+                  : <Button onClick={user ? (() => props.addItemToCart(product.id)) : () => routeChange("login")} title="ADD TO CART" /> }
                 </div>
-              )) : <div> Loading... </div>}
+              ))}
+              {loading && <div> Loading... </div>}
               {itemPage &&
                 <>
-                 <DisplayItem close={closeItemPage} item={displayItem} />
+                 <DisplayItem handleIncrementAction={handleIncrementAction} addItemToCart={props.addItemToCart} onRemoveFromCart={onRemoveFromCart} close={closeItemPage} item={displayItem} />
                 </>
               }
           </div>
         </div>
-      </>
+      </div>
     )
   }
 

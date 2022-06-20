@@ -1,6 +1,7 @@
 import logo from "../assets/hk-logo.png"
 import s from"./NavBar.module.css"
 import { Link } from "react-router-dom"
+import React from "react"
 
 function NavBar(props) {
  return (
@@ -10,12 +11,14 @@ function NavBar(props) {
      </div>
      <div className={s.navBar}>
       <ul className={s.navItems}>
+          <li>
+            <Link to="/">Home</Link>
+          </li>
           <li>About</li>
           <li>
-            <Link to="/">Shop</Link>
+            <Link to="/shop">Shop</Link>
           </li>
           <li>Contact</li>
-          <li>Commissions</li>
           <li>
             <Link to="/login" >Login/Signup</Link>
           </li>

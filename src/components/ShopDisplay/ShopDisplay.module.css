@@ -1,3 +1,22 @@
+.bgContainer {
+  position: relative;
+}
+
+.bgContainer::before {
+  content: "";
+  position: absolute;
+  top: 0px;
+  right: 0px;
+  left: 0px;
+  bottom: 0px;
+  background-image: url("../assets/bgNew.png");
+  background-size: contain;
+  opacity: .25;
+}
+
+.shopWrapper {
+  z-index: 1000;
+}
 
 h2, h3 {
   color: #DFDDD2;
@@ -7,7 +26,8 @@ h2, h3 {
 .shopHeader {
   margin-bottom: 40px;
   text-align: center;
-  margin-top: -20px;
+  margin-top: 60px;
+  z-index: 1;
 }
 
 .shopHeader p {
@@ -78,6 +98,7 @@ h2, h3 {
   justify-content: center;
   flex-wrap: wrap;
   gap: 50px;
+  z-index: 10;
 }
 
 .displayItemBtn {

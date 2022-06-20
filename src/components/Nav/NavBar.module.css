@@ -22,12 +22,14 @@
   align-items: center;
   justify-content: center;
   position: relative;
+  padding: 15px;
 }
 
 .navItems {
   display: flex;
   gap: 50px;
   justify-content: center;
+  margin-bottom: 0px;
 }
 
 .navItems li {
@@ -35,7 +37,12 @@
   font-size: 0.813rem;
 }
 
-.navItems li:hover {
+.navItems li a {
+  text-decoration: none;
+  color: #3b444b;
+}
+
+.navItems li a:hover {
   color: #C1CDBF;
 }
 

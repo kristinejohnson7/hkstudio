@@ -1,0 +1,81 @@
+.displayItemContainer {
+  margin-top: -40px;
+}
+
+.displayItemContainer button {
+  background-color: transparent;
+  border: none;
+  margin-left: auto;
+  margin-right: 17px;
+  display: flex;
+  margin-bottom: 55px;
+}
+
+.itemContainer {
+  display: flex;
+  width: 80%;
+  gap: 50px;
+  align-items: center;
+  margin: auto;
+}
+
+.itemInfo {
+  width: 88%;
+  height: 700px;
+}
+
+.itemInfo h2 {
+  margin-bottom: 17px;
+}
+
+.itemInfo h5 {
+  margin-bottom: 30px
+}
+
+.quantityBtnWrapper {
+ width: 170px;
+ background: #DFDDD2;
+ color: white;
+ border-radius: 12px;
+ display: flex;
+ align-items: center;
+ justify-content: center; 
+ margin: auto;
+ margin-top: 30px;
+}
+
+.itemContainer .carouselInner img {
+  box-shadow: rgba(50, 50, 93, 0.25) 0px 6px 12px -2px, rgba(0, 0, 0, 0.3) 0px 3px 7px -3px;
+}
+
+.itemDesc {
+  font-size: 14px;
+}
+
+.itemDesc ul {
+  margin-top: 20px;
+}
+
+.itemDesc li {
+  list-style: square;
+  margin-bottom: 7px;
+}
+
+.quantityBtnWrapper span {
+  width: 65px;
+  text-align: center;
+  font-size: 22px;
+  font-weight: 600;
+  padding: 10px;
+  cursor: pointer;
+}
+
+.quantityBtnWrapper .num {
+  font-size: 25px;
+  border-right: 2px solid rgba(0, 0, 0, 0.2);
+  border-left: 2px solid rgba(0, 0, 0, 0.2);
+}
+
+.carousel {
+  width: 22rem;
+}

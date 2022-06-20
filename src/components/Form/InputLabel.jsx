@@ -1,5 +1,6 @@
 import s from "./InputLabel.module.css"
 import { CARD, CARDICON } from "../cardVariables"
+import React from "react"
 
 const InputLabel = (props) => {
   const {type, label, name, errorM, error, onPasswordVisibility, isPasswordShown, isCard, cardType,...inputProps} = props

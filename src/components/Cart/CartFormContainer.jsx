@@ -4,6 +4,7 @@ import Header from "../Header/Header"
 import Form from "../Form/Form"
 import Button from "../Buttons/Button"
 import checkConfirm from "../assets/checkConfirm.svg"
+import React from "react"
 
 function CartFormContainer(props) {
   const {confirm, deliveryCost, onPaymentFormSubmit, payment, shipping, getCartSubtotal, cart, cartIds, incrementAction, filteredItems, removeAllItemsFromCart, removeItemFromCart,

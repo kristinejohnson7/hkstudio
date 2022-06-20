@@ -1,0 +1,51 @@
+.bigImage {
+  height: 100vh;
+  width: 100vw;
+  position: relative;
+  background-image: url("../assets/hero.jpeg");
+  background-position: 50% 50%;
+  background-repeat: no-repeat;
+  background-size: cover;
+}
+
+.overlay {
+  position: absolute;
+  height: 100%;
+  width: 100%;
+  top: 0;
+  left: 0;
+  background: rgba(0, 0, 0, 0.25);
+  display: flex;
+  align-items: end;
+  flex-direction: column;
+  color: #f1f0ed;
+}
+
+.heroText {
+  margin-top: 150px;
+  text-align: right;
+  font-weight: 600;
+  margin-right: 100px;
+}
+
+.heroText h5 {
+  font-style: italic;
+  color: #e6e4dc;
+}
+
+.heroText h1 {
+  font-family: 'Roboto Slab', serif;
+}
+
+.heroText button {
+  background-color: transparent;
+  font-weight: 600;
+  padding: 13px;
+  color: #e6e4dc;
+  border: 2px solid #DFDDD2;
+}
+
+.heroText button:hover {
+  color: white;
+  border: 2px solid white;
+}
