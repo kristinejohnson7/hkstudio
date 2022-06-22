@@ -1,4 +1,4 @@
-import React, { useContext } from "react";
+import React, { useContext, useState } from "react";
 import s from "./CartItem.module.css";
 import { userContext } from "../Helper/Context";
 
@@ -8,8 +8,8 @@ function CartItem(props) {
     handleIncrementAction,
     removeItemFromCart,
     products,
-    quantityError,
   } = useContext(userContext);
+  const [quantityError, setQuantityError] = useState("");
 
   const asc = "asc";
   const desc = "desc";
@@ -17,6 +17,9 @@ function CartItem(props) {
 
   const itemQuantity = cartIds.find((id) => cartObj.id === id.id);
   const itemInCart = products.find((product) => cartObj.id == product.id);
+
+  console.log("itemQuantity", itemQuantity);
+  console.log("iteminCart", itemInCart);
 
   return (
     <div className={s.item}>
@@ -31,14 +34,24 @@ function CartItem(props) {
           <div className={s.counter}>
             <div
               className={s.btn}
-              onClick={() => handleIncrementAction(cartObj.id, asc)}
+              onClick={() => {
+                handleIncrementAction(cartObj.id, asc);
+                if (itemQuantity.quantity === itemInCart.quantity) {
+                  setQuantityError("Limit exceeded");
+                } else {
+                  setQuantityError("");
+                }
+              }}
             >
               +
             </div>
             <div className={s.count}>{itemQuantity.quantity}</div>
             <div
               className={s.btn}
-              onClick={() => handleIncrementAction(cartObj.id, desc)}
+              onClick={() => {
+                handleIncrementAction(cartObj.id, desc);
+                setQuantityError("");
+              }}
             >
               -
             </div>

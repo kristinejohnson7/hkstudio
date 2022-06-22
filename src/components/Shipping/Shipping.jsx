@@ -10,7 +10,9 @@ import { useNavigate } from "react-router-dom";
 
 function Shipping(props) {
   const [error, setError] = useState([]);
-  const { shippingData, setShippingData } = useContext(userContext);
+  const { shippingData, setShippingData, setDeliveryMethod } = useContext(
+    userContext
+  );
 
   const navigate = useNavigate();
 
@@ -71,6 +73,7 @@ function Shipping(props) {
     const errorCheck = checkErrorBeforeSave(shippingData);
     if (!errorCheck) {
       setShippingData(shippingData);
+      setDeliveryMethod(shippingData.deliveryType);
       navigate("/cart/payment");
     }
   };

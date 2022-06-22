@@ -6,6 +6,22 @@ const productCall = new ProductData();
 export const userContext = createContext({});
 const { Provider } = userContext;
 
+const useDeliveryMethod = (
+  cartIds,
+  getCartSubtotal,
+  handleDeliveryMethod,
+  deliveryMethod
+) => {
+  useEffect(() => {
+    if (cartIds.length > 0 && !deliveryMethod) {
+      handleDeliveryMethod(
+        { target: { value: "Standard" } },
+        getCartSubtotal()
+      );
+    }
+  }, [cartIds, deliveryMethod]);
+};
+
 const UserProvider = (props) => {
   const [user, setUser] = useState("");
   const [cartIds, setCartIds] = useState([]);
@@ -16,8 +32,8 @@ const UserProvider = (props) => {
   const [discountType, setDiscountType] = useState("");
   const [cartDiscount, setCartDiscount] = useState(0);
   const [shippingData, setShippingData] = useState([]);
-  const [deliveryMethod, setDeliveryMethod] = useState([]);
-  const [deliveryCost, setDeliveryCost] = useState([]);
+  const [deliveryMethod, setDeliveryMethod] = useState("");
+  const [deliveryCost, setDeliveryCost] = useState(0);
   const [paymentInfo, setPaymentInfo] = useState([]);
 
   useEffect(() => {
@@ -46,20 +62,20 @@ const UserProvider = (props) => {
         cartIds.find((cartItem) => item.id === cartItem.id).quantity
     );
 
-    const calculateCartDiscount = () => {
-      if (discountType === 0) {
-        return 0;
-      } else {
-        const newDiscount = discountType.amount * getCartSubtotal();
-        setCartDiscount(newDiscount);
-        return newDiscount;
-      }
-    };
-
     const sum = itemPrice.reduce((total, current) => {
       return total + current;
     }, 0);
     return sum;
+  };
+
+  const calculateCartDiscount = () => {
+    if (discountType === 0) {
+      return 0;
+    } else {
+      const newDiscount = discountType.amount * getCartSubtotal();
+      setCartDiscount(newDiscount);
+      return newDiscount;
+    }
   };
 
   const itemsInCart = products.filter((product) =>
@@ -105,12 +121,12 @@ const UserProvider = (props) => {
       }
       incrementObj.quantity += 1;
       setCartIds(oldCartIds);
-      // calculateCartDiscount();
+      calculateCartDiscount();
     } else if (count === "desc") {
       incrementObj.quantity -= 1;
       setQuantityError("");
       setCartIds(oldCartIds.filter((cart) => cart.quantity > 0));
-      // calculateCartDiscount();
+      calculateCartDiscount();
     }
   };
 
@@ -126,6 +142,13 @@ const UserProvider = (props) => {
       setDeliveryCost(50);
     }
   };
+
+  useDeliveryMethod(
+    cartIds,
+    getCartSubtotal,
+    handleDeliveryMethod,
+    deliveryMethod
+  );
 
   return (
     <Provider
@@ -158,6 +181,7 @@ const UserProvider = (props) => {
         deliveryCost,
         paymentInfo,
         setPaymentInfo,
+        setDeliveryMethod,
       }}
     />
   );

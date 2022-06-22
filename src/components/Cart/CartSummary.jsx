@@ -16,8 +16,11 @@ function CartSummary(props) {
     user,
   } = useContext(userContext);
   const { paymentDetails, paySummary, paymentBtn } = props;
+
   const deliveryMethodText = deliveryCost === 50 ? "Express" : "Standard";
+
   const shipping = cartSubtotal < 250 && deliveryCost === 0 ? 25 : deliveryCost;
+
   const lastFourOfCC =
     paymentInfo.card === undefined ? 0 : paymentInfo.card.slice(-4);
 
