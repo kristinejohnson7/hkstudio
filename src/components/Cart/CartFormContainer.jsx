@@ -6,16 +6,15 @@ import Button from "../Buttons/Button";
 import checkConfirm from "../assets/checkConfirm.svg";
 import React, { useContext } from "react";
 import { userContext } from "../Helper/Context";
+import { useNavigate } from "react-router-dom";
 
 function CartFormContainer(props) {
-  const { cartIds, setCartIds, itemsInCart } = useContext(userContext);
+  const { cartIds, setCartIds, itemsInCart, deliveryCost } = useContext(
+    userContext
+  );
   const {
-    deliveryCost,
     onPaymentFormSubmit,
-    getCartSubtotal,
-    handleDeliveryMethod,
     error,
-    handleBlur,
     onShippingFormSubmit,
     handleValidations,
     cardData,
@@ -23,12 +22,13 @@ function CartFormContainer(props) {
     handleInputData,
     cardType,
     discountAmount,
-    backToShopFromConfirm,
     cart,
     shipping,
     confirm,
     payment,
   } = props;
+
+  const navigate = useNavigate();
 
   return (
     <div className={s.cartContainer}>
@@ -56,11 +56,8 @@ function CartFormContainer(props) {
           <Header title="Shipping Information" />
           <Form
             shipping="true"
-            handleDeliveryMethod={handleDeliveryMethod}
             handleValidations={handleValidations}
             onShippingFormSubmit={onShippingFormSubmit}
-            getCartSubtotal={getCartSubtotal}
-            handleBlur={handleBlur}
             error={error}
           />
         </>
@@ -71,8 +68,6 @@ function CartFormContainer(props) {
           <Form
             payment="true"
             onPaymentFormSubmit={onPaymentFormSubmit}
-            getCartSubtotal={getCartSubtotal}
-            deliveryCost={deliveryCost}
             cardData={cardData}
             handleInputData={handleInputData}
             handleValidations={handleValidations}
@@ -102,10 +97,7 @@ function CartFormContainer(props) {
             </p>
           </div>
           <Button title="Track Your Order" />
-          <Button
-            title="BACK TO THE SHOP"
-            onClick={() => backToShopFromConfirm(true)}
-          />
+          <Button title="BACK TO THE SHOP" onClick={() => navigate("/")} />
         </div>
       )}
     </div>

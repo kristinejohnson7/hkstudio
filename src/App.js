@@ -23,7 +23,7 @@ function App() {
         <Route path="/login" element={<LoginSignUp />} />
         <Route path="/cart" element={<Checkout />}>
           <Route path="/cart" element={<Cart cart="true" />} />
-          <Route path="shipping" element={<Shipping shipping="true" />} />
+          <Route path="/cart/shipping" element={<Shipping shipping="true" />} />
           <Route path="payment" element={<Payment payment="true" />} />
           <Route path="confirm" element={<Confirm confirm="true" />} />
         </Route>

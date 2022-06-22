@@ -1,6 +1,6 @@
 import logo from "../assets/hk-logo.png";
 import s from "./NavBar.module.css";
-import { Link, useNavigate } from "react-router-dom";
+import { Link, useNavigate, useOutlet } from "react-router-dom";
 import React, { useContext } from "react";
 import { userContext } from "../Helper/Context";
 
@@ -27,9 +27,11 @@ function NavBar() {
             <Link to="/login">Login/Signup</Link>
           </li>
         </ul>
-        <button className={s.cartNav} onClick={() => navigate("cart")}>
+        <button className={s.cartNav} onClick={() => navigate("/cart")}>
           <i className="fa-solid fa-cart-shopping fa-lg"></i>
-          <span>{totalCartItems}</span>
+          <div className={s.cartIconQuantityWrapper}>
+            <span>{totalCartItems}</span>
+          </div>
         </button>
       </div>
     </div>

@@ -13,6 +13,12 @@ const UserProvider = (props) => {
   const [error, setError] = useState(false);
   const [products, setProducts] = useState([]);
   const [quantityError, setQuantityError] = useState("");
+  const [discountType, setDiscountType] = useState("");
+  const [cartDiscount, setCartDiscount] = useState(0);
+  const [shippingData, setShippingData] = useState([]);
+  const [deliveryMethod, setDeliveryMethod] = useState([]);
+  const [deliveryCost, setDeliveryCost] = useState([]);
+  const [paymentInfo, setPaymentInfo] = useState([]);
 
   useEffect(() => {
     setLoading(true);
@@ -40,6 +46,16 @@ const UserProvider = (props) => {
         cartIds.find((cartItem) => item.id === cartItem.id).quantity
     );
 
+    const calculateCartDiscount = () => {
+      if (discountType === 0) {
+        return 0;
+      } else {
+        const newDiscount = discountType.amount * getCartSubtotal();
+        setCartDiscount(newDiscount);
+        return newDiscount;
+      }
+    };
+
     const sum = itemPrice.reduce((total, current) => {
       return total + current;
     }, 0);
@@ -53,13 +69,11 @@ const UserProvider = (props) => {
   const addItemToCart = (id) => {
     const newIds = [...cartIds, { id, quantity: 1 }];
     setCartIds((prevState) => [...prevState, { id, quantity: 1 }]);
-    // countCartItems();
   };
 
   const removeItemFromCart = (id) => {
     const newIds = cartIds.filter((cart) => cart.id !== id);
     setCartIds(newIds);
-    // countCartItems();
   };
 
   const countCartItems = () => {
@@ -91,12 +105,25 @@ const UserProvider = (props) => {
       }
       incrementObj.quantity += 1;
       setCartIds(oldCartIds);
-      // this.calculateCartDiscount()
+      // calculateCartDiscount();
     } else if (count === "desc") {
       incrementObj.quantity -= 1;
       setQuantityError("");
       setCartIds(oldCartIds.filter((cart) => cart.quantity > 0));
-      // this.calculateCartDiscount()
+      // calculateCartDiscount();
+    }
+  };
+
+  const handleDeliveryMethod = (e, subtotal) => {
+    const deliveryMethod = e.target.value;
+    if (deliveryMethod === "Standard" || !deliveryMethod) {
+      if (subtotal >= 250) {
+        setDeliveryCost(0);
+      } else {
+        setDeliveryCost(25);
+      }
+    } else if (deliveryMethod === "Express") {
+      setDeliveryCost(50);
     }
   };
 
@@ -120,6 +147,17 @@ const UserProvider = (props) => {
         quantityError,
         setQuantityError,
         totalCartItems: countCartItems(),
+        cartDiscount,
+        setCartDiscount,
+        discountType,
+        setDiscountType,
+        shippingData,
+        setShippingData,
+        deliveryMethod,
+        handleDeliveryMethod,
+        deliveryCost,
+        paymentInfo,
+        setPaymentInfo,
       }}
     />
   );

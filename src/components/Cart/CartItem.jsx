@@ -27,25 +27,30 @@ function CartItem(props) {
         <div className={s.about}>
           <h1 className={s.title}>{itemInCart.name}</h1>
         </div>
-        <div className={s.counter}>
-          <div
-            className={s.btn}
-            onClick={() => handleIncrementAction(cartObj.id, asc)}
-          >
-            +
+        <div className={s.counterContainer}>
+          <div className={s.counter}>
+            <div
+              className={s.btn}
+              onClick={() => handleIncrementAction(cartObj.id, asc)}
+            >
+              +
+            </div>
+            <div className={s.count}>{itemQuantity.quantity}</div>
+            <div
+              className={s.btn}
+              onClick={() => handleIncrementAction(cartObj.id, desc)}
+            >
+              -
+            </div>
           </div>
-          <div className={s.count}>{itemQuantity.quantity}</div>
-          <div
-            className={s.btn}
-            onClick={() => handleIncrementAction(cartObj.id, desc)}
-          >
-            -
-          </div>
+          <p className={s.errorMessage}>{quantityError}</p>
         </div>
-        <p>{quantityError}</p>
         <div className={s.prices}>
           <div className={s.amount}>${itemInCart.price}</div>
-          <div className={s.remove} onClick={() => removeItemFromCart(cartObj)}>
+          <div
+            className={s.remove}
+            onClick={() => removeItemFromCart(cartObj.id)}
+          >
             <u>Remove</u>
           </div>
         </div>

@@ -60,12 +60,14 @@
 
 .paymentCardDetails {
   margin-left: 46px;
+  margin-top: -37px;
+  margin-bottom: 20px;
 }
 
 .shippingAddress {
   margin-left: 50px;
   margin-bottom: 20px;
-  margin-top: -10px;
+  margin-top: 10px;
 }
 
 .shippingMethod h3 {
@@ -76,6 +78,7 @@
 .deliveryText {
   margin-left: 50px;
   margin-bottom: 50px;
+  margin-top: 10px;
 }
 
 .deliveryText p {

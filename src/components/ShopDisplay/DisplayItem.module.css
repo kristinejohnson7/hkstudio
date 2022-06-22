@@ -87,3 +87,11 @@
 .carousel {
   width: 22rem;
 }
+
+.errorMessage {
+  text-align: center;
+  margin-top: 10px;
+  font-size: 14px;
+  font-weight: 600;
+  color: #16558A;
+}

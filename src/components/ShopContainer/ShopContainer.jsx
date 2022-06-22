@@ -267,30 +267,30 @@ export default ShopContainer;
 //     this.setState({paymentInfo: data})
 //   }
 
-handlePromoCode = (data) => {
-  const promo = this.discountCodes.find((code) => {
-    return code.code === data.code;
-  });
-  this.setState({ discountType: promo });
-  if (promo) {
-    const discountAmount = promo.amount * this.getCartSubtotal();
-    this.setState({ discountAmount: discountAmount });
-    this.setState({ promoError: false });
-  } else {
-    this.setState({ promoError: true });
-  }
-};
-
-//   calculateCartDiscount = () => {
-//     const {discountType} = this.state
-//     if (discountType === 0) {
-//       return 0;
-//     } else {
-//       const newDiscount = this.state.discountType.amount * this.getCartSubtotal()
-//       this.setState({discountAmount: newDiscount})
-//       return newDiscount
-//     }
+// handlePromoCode = (data) => {
+//   const promo = this.discountCodes.find((code) => {
+//     return code.code === data.code;
+//   });
+//   this.setState({ discountType: promo });
+//   if (promo) {
+//     const discountAmount = promo.amount * this.getCartSubtotal();
+//     this.setState({ discountAmount: discountAmount });
+//     this.setState({ promoError: false });
+//   } else {
+//     this.setState({ promoError: true });
 //   }
+// };
+
+// calculateCartDiscount = () => {
+//   const { discountType } = this.state;
+//   if (discountType === 0) {
+//     return 0;
+//   } else {
+//     const newDiscount = this.state.discountType.amount * this.getCartSubtotal();
+//     this.setState({ discountAmount: newDiscount });
+//     return newDiscount;
+//   }
+// };
 
 //   render() {
 //     const { paymentInfo, shopDisplay, confirm, login, cart,

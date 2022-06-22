@@ -74,7 +74,7 @@ const DisplayItem = (props) => {
               </span>
             </div>
           )}
-          {quantityError && <p>{quantityError}</p>}
+          {quantityError && <p className={s.errorMessage}>{quantityError}</p>}
         </div>
       </div>
     </div>

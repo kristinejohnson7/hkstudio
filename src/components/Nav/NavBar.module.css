@@ -54,6 +54,28 @@
   border: none;
 }
 
+.cartIconQuantityWrapper {
+  width: 22px;
+  height: 22px;
+  background-color: rgba(22, 86, 138, 0.5);
+  border-radius: 50%;
+  padding: 4px;
+  position: absolute;
+  top: -7px;
+  right: -9px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+
+}
+
+.cartNav span {
+  font-weight: 600;
+  color: white;
+  font-size: 12px;
+}
+
 
 @media only screen and (max-width: 600px) {
   .navItems {

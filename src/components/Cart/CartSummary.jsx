@@ -5,38 +5,45 @@ import CheckoutButton from "../Buttons/CheckoutButton";
 import { userContext } from "../Helper/Context";
 
 function CartSummary(props) {
-  const { countCartItems } = useContext(userContext);
   const {
-    paymentDetails,
-    userEmail,
-    shippingInfo,
-    paySummary,
-    paymentBtn,
-    summaryData,
-    getCartSubtotal,
-    deliveryCost,
-    discountAmount,
     paymentInfo,
-  } = props;
-  const subtotal = getCartSubtotal();
+    deliveryCost,
+    cartSubtotal,
+    itemsInCart,
+    cartDiscount,
+    cartIds,
+    shippingData,
+    user,
+  } = useContext(userContext);
+  const { paymentDetails, paySummary, paymentBtn } = props;
   const deliveryMethodText = deliveryCost === 50 ? "Express" : "Standard";
-  const shipping = subtotal < 250 && deliveryCost === 0 ? 25 : deliveryCost;
+  const shipping = cartSubtotal < 250 && deliveryCost === 0 ? 25 : deliveryCost;
+  const lastFourOfCC =
+    paymentInfo.card === undefined ? 0 : paymentInfo.card.slice(-4);
 
+  console.log("paymentInfo", paymentInfo);
   return (
     <div className={s.cartPriceContainer}>
       <Header title="Order Summary" />
       <div className={s.summaryContent}>
-        {summaryData.map((cartItem) => {
+        {itemsInCart.map((cartItem) => {
           return (
             <div key={cartItem.id} className={s.itemSummary}>
               <div className={s.itemNameAndQuantity}>
                 <div className={s.itemDescription}>
                   <h5>{cartItem.name}</h5>
-                  <img src={cartItem.img} alt="cart-item" />
+                  <img src={cartItem.imgMain} alt="cart-item" />
                 </div>
                 <div className={s.pricingInfo}>
-                  <div>${cartItem.price * cartItem.quantity}</div>
-                  <p>Quantity: {cartItem.quantity}</p>
+                  <div>
+                    $
+                    {cartItem.price *
+                      cartIds.find((item) => item.id === cartItem.id).quantity}
+                  </div>
+                  <p>
+                    Quantity:{" "}
+                    {cartIds.find((item) => item.id === cartItem.id).quantity}
+                  </p>
                 </div>
               </div>
             </div>
@@ -46,11 +53,11 @@ function CartSummary(props) {
       <hr />
       <div className="cartTotals">
         <div className={s.cartSubTotal}>
-          <p>Cart Subtotal</p>${subtotal}
+          <p>Cart Subtotal</p>${cartSubtotal}
         </div>
         <div className={s.cartShipping}>
           <p>Discounts</p>
-          <p> ${discountAmount.toFixed(2)} </p>
+          <p> ${cartDiscount.toFixed(2)} </p>
         </div>
         <div className={s.cartShipping}>
           <p>Shipping & Handling</p>
@@ -58,7 +65,7 @@ function CartSummary(props) {
         </div>
         <div className={s.cartTotal}>
           <h4>Cart Total</h4>
-          <p>${(subtotal - discountAmount + shipping).toFixed(2)}</p>
+          <p>${cartSubtotal - cartDiscount + shipping}</p>
         </div>
       </div>
       <hr />
@@ -76,10 +83,8 @@ function CartSummary(props) {
         <>
           <Header title="Payment" />
           <div className={s.paymentCardDetails}>
-            <p>
-              Total Charge: ${(subtotal - discountAmount + shipping).toFixed(2)}
-            </p>
-            <p>Card Charged: {paymentInfo.card.slice(-4)}</p>
+            <p>Total Charge: ${cartSubtotal - cartDiscount + deliveryCost}</p>
+            <p>Card Charged: {lastFourOfCC}</p>
           </div>
         </>
       )}
@@ -88,12 +93,12 @@ function CartSummary(props) {
           <div>
             <Header title="Shipment Address" />
             <div className={s.shippingAddress}>
-              <p>{shippingInfo.name}</p>
-              <p>{userEmail}</p>
+              <p>{shippingData.name}</p>
+              <p>{user.email}</p>
               <address>
-                <p>{shippingInfo.address}</p>
-                <p>{shippingInfo.zip}</p>
-                <p>{shippingInfo.country}</p>
+                <p>{shippingData.address}</p>
+                <p>{shippingData.zip}</p>
+                <p>{shippingData.country}</p>
               </address>
             </div>
           </div>

@@ -1,4 +1,4 @@
-import React, { useContext } from "react";
+import React, { useContext, useState } from "react";
 import s from "./Cart.module.css";
 import BackButton from "../Buttons/BackButton";
 import Header from "../Header/Header";
@@ -10,6 +10,7 @@ import { userContext } from "../Helper/Context";
 import { useNavigate } from "react-router-dom";
 
 function Cart(props) {
+  const [promoError, setPromoError] = useState("");
   const {
     user,
     cartIds,
@@ -21,10 +22,14 @@ function Cart(props) {
     products,
     countCartItems,
     cartSubtotal,
+    setCartDiscount,
+    cartDiscount,
+    discountType,
+    setDiscountType,
   } = useContext(userContext);
-  const { showShipping, incrementAction, discount, promoError } = props;
 
-  let discountType = "";
+  const navigate = useNavigate();
+
   const discountCodes = [
     { code: "SUMMER", amount: 0.3 },
     { code: "GET10", amount: 0.1 },
@@ -34,15 +39,14 @@ function Cart(props) {
     const promo = discountCodes.find((code) => {
       return code.code === data.code;
     });
-    discountType = promo;
-    console.log("discount type", discountType);
-    // if (promo) {
-    //   const discountAmount = promo.amount * this.getCartSubtotal();
-    //   this.setState({ discountAmount: discountAmount });
-    //   this.setState({ promoError: false });
-    // } else {
-    //   this.setState({ promoError: true });
-    // }
+    setDiscountType(promo);
+    if (promo) {
+      const discountAmount = promo.amount * cartSubtotal;
+      setCartDiscount(discountAmount);
+      setPromoError("");
+    } else {
+      setPromoError(true);
+    }
   };
 
   const onPromoSubmit = (event) => {
@@ -102,7 +106,9 @@ function Cart(props) {
             </div>
             <div className={s.cartDiscount}>
               <p>Discounts</p>
-              <p id="discountAmount">- ${isNaN(discount) ? 0 : discount}</p>
+              <p id="discountAmount">
+                - ${isNaN(cartDiscount) ? 0 : cartDiscount}
+              </p>
             </div>
             <div className={s.cartShipping}>
               <p>Shipping & Handling</p>
@@ -110,13 +116,15 @@ function Cart(props) {
             </div>
             <div className={s.cartTotal}>
               <h4>Cart Total</h4>
-              {/* <p>${getCartSubtotal() - (isNaN(discount) ? 0 : discount)}</p> */}
+              <p>${cartSubtotal - (isNaN(cartDiscount) ? 0 : cartDiscount)}</p>
             </div>
           </div>
           <hr />
           <div className={s.checkoutBtn}>
             {cartIds.length ? (
-              <button onClick={() => showShipping()}>CHECKOUT</button>
+              <button onClick={() => navigate("/cart/shipping")}>
+                CHECKOUT
+              </button>
             ) : (
               <button disabled>CHECKOUT</button>
             )}
