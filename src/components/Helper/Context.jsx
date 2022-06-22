@@ -1,3 +1,128 @@
-import { createContext } from "react";
+import React, { createContext, useState, useEffect } from "react";
+import ProductData from "../../products";
 
-export const UserContext = createContext({});
+const productCall = new ProductData();
+
+export const userContext = createContext({});
+const { Provider } = userContext;
+
+const UserProvider = (props) => {
+  const [user, setUser] = useState("");
+  const [cartIds, setCartIds] = useState([]);
+  const [loading, setLoading] = useState(false);
+  const [error, setError] = useState(false);
+  const [products, setProducts] = useState([]);
+  const [quantityError, setQuantityError] = useState("");
+
+  useEffect(() => {
+    setLoading(true);
+    productCall.fetchProductItems().then(
+      (res) => {
+        if (res && res.response.ok) {
+          setLoading(false);
+          setProducts(res.data);
+        } else {
+          setLoading(false);
+        }
+      },
+      (error) => {
+        setLoading(false);
+        setError(false);
+      }
+    );
+  }, []);
+
+  const getCartSubtotal = () => {
+    let cartItems = "";
+    const itemPrice = itemsInCart.map(
+      (item) =>
+        item.price *
+        cartIds.find((cartItem) => item.id === cartItem.id).quantity
+    );
+
+    const sum = itemPrice.reduce((total, current) => {
+      return total + current;
+    }, 0);
+    return sum;
+  };
+
+  const itemsInCart = products.filter((product) =>
+    cartIds.find((cartId) => cartId.id === product.id)
+  );
+
+  const addItemToCart = (id) => {
+    const newIds = [...cartIds, { id, quantity: 1 }];
+    setCartIds((prevState) => [...prevState, { id, quantity: 1 }]);
+    // countCartItems();
+  };
+
+  const removeItemFromCart = (id) => {
+    const newIds = cartIds.filter((cart) => cart.id !== id);
+    setCartIds(newIds);
+    // countCartItems();
+  };
+
+  const countCartItems = () => {
+    const sum = cartIds.reduce((total, current) => {
+      return total + current.quantity;
+    }, 0);
+    return sum;
+  };
+
+  const handleIncrementAction = (item, count) => {
+    const oldCartIds = [...cartIds];
+    let incrementObj = oldCartIds.find((obj) => obj.id === item);
+
+    if (!incrementObj) {
+      addItemToCart(item);
+      oldCartIds.push({ id: item, quantity: 1 });
+      incrementObj = oldCartIds.find((obj) => obj.id === item);
+    }
+    if (count === "asc") {
+      const databaseQuantity = products.find(
+        (product) => product.id === incrementObj.id
+      ).quantity;
+
+      if (databaseQuantity === incrementObj.quantity) {
+        incrementObj.quantity -= 1;
+        setQuantityError("Limit exceeded");
+      } else {
+        setQuantityError("");
+      }
+      incrementObj.quantity += 1;
+      setCartIds(oldCartIds);
+      // this.calculateCartDiscount()
+    } else if (count === "desc") {
+      incrementObj.quantity -= 1;
+      setQuantityError("");
+      setCartIds(oldCartIds.filter((cart) => cart.quantity > 0));
+      // this.calculateCartDiscount()
+    }
+  };
+
+  return (
+    <Provider
+      {...props}
+      value={{
+        user,
+        setUser,
+        cartIds,
+        setCartIds,
+        addItemToCart,
+        removeItemFromCart,
+        handleIncrementAction,
+        countCartItems,
+        products,
+        setProducts,
+        loading,
+        itemsInCart,
+        cartSubtotal: getCartSubtotal(),
+        quantityError,
+        setQuantityError,
+        totalCartItems: countCartItems(),
+      }}
+    />
+  );
+};
+
+export default UserProvider;

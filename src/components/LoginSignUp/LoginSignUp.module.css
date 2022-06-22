@@ -6,6 +6,8 @@
   padding-top: 50px;
   padding-bottom: 100px;
   position: relative;
+  height: 100vh;
+  width: 100vw;
 }
 
 .loginContainer::before {
@@ -26,32 +28,16 @@
   padding: 30px;
   border-radius: 5px;
   position: relative;
-}
-
-.backHome {
-  font-size: 12px;
-  margin-right: auto;
-  margin-left: 200px;
-  cursor: pointer;
-  background-color: rgba(254, 254, 252, 0.9);
-  padding: 15px;
-  border-radius: 5px;
-  display: inline-flex;
-  align-items: center;
-  position: relative;
-}
-
-.backHome span {
-  margin-left: 7px;
-}
-
-.backHome:hover {
-  color: #B1BDAD;
+  overflow: scroll;
 }
 
 .selectionSignIn {
   text-align: center;
   position: relative;
+}
+
+.selectionSignIn h4 {
+  margin-bottom: 20px;
 }
 
 .selectionSignIn label {

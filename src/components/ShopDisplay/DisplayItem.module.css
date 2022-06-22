@@ -4,11 +4,15 @@
 
 .displayItemContainer button {
   background-color: transparent;
-  border: none;
   margin-left: auto;
   margin-right: 17px;
   display: flex;
   margin-bottom: 55px;
+}
+
+.quantityBtnWrapper button, 
+.exitBtn {
+  border: none;
 }
 
 .itemContainer {
@@ -32,6 +36,11 @@
   margin-bottom: 30px
 }
 
+.addItemBtn button, .quantityBtnWrapper {
+  margin: auto;
+  margin-top: 30px;
+}
+
 .quantityBtnWrapper {
  width: 170px;
  background: #DFDDD2;
@@ -40,8 +49,7 @@
  display: flex;
  align-items: center;
  justify-content: center; 
- margin: auto;
- margin-top: 30px;
+ border: none;
 }
 
 .itemContainer .carouselInner img {

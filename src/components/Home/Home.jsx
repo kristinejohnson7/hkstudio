@@ -1,8 +1,11 @@
 import React from "react";
 import s from "../Home/Home.module.css"
-// import heroPhoto from "./components/assets/hero.jpeg"
+import { useNavigate } from "react-router-dom"
 
-const Home = (props) => {
+
+const Home = () => {
+
+  let navigate = useNavigate()
 
   return (
     <div className={s.bigImage}>
@@ -10,7 +13,7 @@ const Home = (props) => {
         <div className={s.heroText}>
           <h5>Art for your walls that add</h5>
           <h1>rest to your home</h1>
-          <button onClick={() => props.routeChange("shop")}>SHOP NOW</button>
+          <button onClick={() => navigate("shop")}>SHOP NOW</button>
         </div>
       </div>
     </div>

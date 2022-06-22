@@ -1,36 +1,9 @@
 import React, { useState, useEffect } from "react";
-import ShopDisplay from "../ShopDisplay/ShopDisplay"
+import ShopDisplay from "../ShopDisplay/ShopDisplay";
 import { shopComponents } from "../variables";
-import ProductData from "../../products";
 import Checkout from "../Cart/Checkout";
 
-const productCall = new ProductData();
-
-
 function ShopContainer(props) {
-  const [loading, setLoading] = useState(false)
-  const [error, setError] = useState(false)
-  const [products, setProducts] = useState([])
-  const [cartIds, setCartIds] = useState([])
-
-
-  useEffect(() => {
-    setLoading(true)
-    productCall.fetchProductItems()
-      .then((res) => {
-        if (res && res.response.ok) {
-          setLoading(false);
-          setProducts(res.data);
-        } else {
-          setLoading(false)
-        }
-      }, (error) => {
-        setLoading(false);
-        setError(false)
-      })
-  }, [])
-
-
   // addItemToCart = (id) => {
   //   const newIds = [...this.state.cartIds, {id, quantity: 1}]
   //   this.setState({cartIds: newIds})
@@ -93,14 +66,14 @@ function ShopContainer(props) {
   // handleShippingData = (data) => {
   //   this.setState({shippingInfo: data})
   // }
-  
+
   // handlePaymentData = (data) => {
   //   this.setState({paymentInfo: data})
   // }
 
   // handlePromoCode = (data) => {
   //   const promo = this.discountCodes.find((code) => {
-  //     return code.code === data.code 
+  //     return code.code === data.code
   //   })
   //   this.setState({discountType: promo})
   //   if (promo) {
@@ -123,31 +96,22 @@ function ShopContainer(props) {
   //   }
   // }
 
-    // const filtered = products.items.filter((item) => cartIds.find((cart) => cart.id === item.key));
-    return (
-      <div >
-        <ShopDisplay 
-        cartIds={props.cartIds}
-        handleIncrementAction={props.handleIncrementAction}
-        routeChange={props.routeChange}
-        onRemoveFromCart={props.removeItemFromCart}
-        addItemToCart={props.addItemToCart} 
-        products={products}
-        loading={loading}
-        // user={props.user}
-        />
-      </div>
-    )
-  
+  // const filtered = products.items.filter((item) => cartIds.find((cart) => cart.id === item.key));
+  return (
+    <div>
+      <ShopDisplay
+      // cartIds={props.cartIds}
+      // handleIncrementAction={props.handleIncrementAction}
+      // onRemoveFromCart={props.removeItemFromCart}
+      // addItemToCart={props.addItemToCart}
+
+      // user={props.user}
+      />
+    </div>
+  );
 }
 
 export default ShopContainer;
-
-
-
-
-
-
 
 // class ShopContainer extends React.Component {
 //   constructor(){
@@ -164,7 +128,7 @@ export default ShopContainer;
 //       discountAmount: 0,
 //       discountType: 0,
 //       loading: false,
-//       error: false, 
+//       error: false,
 //       products: [],
 //     }
 //   }
@@ -298,24 +262,24 @@ export default ShopContainer;
 //   handleShippingData = (data) => {
 //     this.setState({shippingInfo: data})
 //   }
-  
+
 //   handlePaymentData = (data) => {
 //     this.setState({paymentInfo: data})
 //   }
 
-//   handlePromoCode = (data) => {
-//     const promo = this.discountCodes.find((code) => {
-//       return code.code === data.code 
-//     })
-//     this.setState({discountType: promo})
-//     if (promo) {
-//       const discountAmount = promo.amount * this.getCartSubtotal()
-//       this.setState({discountAmount: discountAmount})
-//       this.setState({promoError: false})
-//     } else {
-//       this.setState({promoError: true})
-//     }
-//   }
+handlePromoCode = (data) => {
+  const promo = this.discountCodes.find((code) => {
+    return code.code === data.code;
+  });
+  this.setState({ discountType: promo });
+  if (promo) {
+    const discountAmount = promo.amount * this.getCartSubtotal();
+    this.setState({ discountAmount: discountAmount });
+    this.setState({ promoError: false });
+  } else {
+    this.setState({ promoError: true });
+  }
+};
 
 //   calculateCartDiscount = () => {
 //     const {discountType} = this.state
@@ -331,38 +295,38 @@ export default ShopContainer;
 //   render() {
 //     const { paymentInfo, shopDisplay, confirm, login, cart,
 //        cartIds, shipping, deliveryCost, payment, shippingInfo, user,  discountType, promoError, discountAmount, products, loading} = this.state
-    
+
 //     const filtered = shopDisplay.items.filter((item) => cartIds.find((cart) => cart.id === item.key));
 
 //     return (
 //       <div >
-//         <ShopDisplay 
+//         <ShopDisplay
 //         cartIds={cartIds}
 //         routeChange={this.props.routeChange}
 //         onRemoveFromCart={this.removeItemFromCart}
 //         showCart={this.showCart}
-//         onCart={this.addItemToCart} 
-//         onLogin={this.showLogin} 
+//         onCart={this.addItemToCart}
+//         onLogin={this.showLogin}
 //         products={products}
 //         loading={loading}
 //         user={this.props.user}/>
 //         <Checkout />
-//         {shopDisplay.display && 
-//         <ShopDisplay 
+//         {shopDisplay.display &&
+//         <ShopDisplay
 //         cartIds={cartIds}
 //         onRemoveFromCart={this.removeItemFromCart}
 //         showCart={this.showCart}
-//         onCart={this.addItemToCart} 
-//         onLogin={this.showLogin} 
+//         onCart={this.addItemToCart}
+//         onLogin={this.showLogin}
 //         products={products}
 //         loading={loading}
 //         user={this.props.user}/>}
-//         {login.display && 
-//         <LoginSignUp 
+//         {login.display &&
+//         <LoginSignUp
 //         onReturn={this.showLogin}
-//         onSubmit={(userData) => 
+//         onSubmit={(userData) =>
 //           {this.setState({user: userData})
-//         this.showLogin(false)}}/>} 
+//         this.showLogin(false)}}/>}
 //         {cart.display &&
 //         <Cart
 //         cartIds={cartIds}
@@ -372,7 +336,7 @@ export default ShopContainer;
 //         discount={discountType === undefined ? 0 : discountType.amount * this.getCartSubtotal()}
 //         onReturn={this.showCart}
 //         incrementAction={this.handleIncrementAction}
-//         removeItemFromCart={this.removeItemFromCart}  
+//         removeItemFromCart={this.removeItemFromCart}
 //         removeAllItemsFromCart={this.removeAllItemsFromCart}
 //         summaryData={this.getSummaryData()}
 //         getCartSubtotal={this.getCartSubtotal}
@@ -380,8 +344,8 @@ export default ShopContainer;
 //         showShipping={this.showShipping}
 //         handlePromoCode={this.handlePromoCode}
 //         />}
-//         {shipping.display && 
-//         <Shipping 
+//         {shipping.display &&
+//         <Shipping
 //           cartIds={cartIds}
 //           shopItems={shopDisplay.items}
 //           discountAmount={discountAmount}
@@ -394,8 +358,8 @@ export default ShopContainer;
 //           handleShippingData={this.handleShippingData}
 //           showPayment={this.showPayment}
 //         />}
-//         {payment.display && 
-//         <Payment 
+//         {payment.display &&
+//         <Payment
 //           getCartSubtotal={this.getCartSubtotal}
 //           discount={discountType === undefined ? 0 : discountType.amount * this.getCartSubtotal()}
 //           summaryData={this.getSummaryData()}
@@ -411,7 +375,7 @@ export default ShopContainer;
 //           handlePaymentData={this.handlePaymentData}
 //         />}
 //         {confirm.display &&
-//         <ConfirmPayment 
+//         <ConfirmPayment
 //           paymentInfo={paymentInfo}
 //           summaryData={this.getSummaryData()}
 //           discountAmount={discountAmount}
