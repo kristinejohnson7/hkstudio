@@ -26,10 +26,10 @@ const UserProvider = (props) => {
   const [user, setUser] = useState("");
   const [cartIds, setCartIds] = useState([]);
   const [loading, setLoading] = useState(false);
-  const [error, setError] = useState(false);
+  const [loadError, setLoadError] = useState(false);
   const [products, setProducts] = useState([]);
   const [quantityError, setQuantityError] = useState("");
-  const [discountType, setDiscountType] = useState("");
+  const [discountType, setDiscountType] = useState(0);
   const [cartDiscount, setCartDiscount] = useState(0);
   const [shippingData, setShippingData] = useState([]);
   const [deliveryMethod, setDeliveryMethod] = useState("");
@@ -48,8 +48,9 @@ const UserProvider = (props) => {
         }
       },
       (error) => {
+        console.log(error);
         setLoading(false);
-        setError(false);
+        setLoadError(true);
       }
     );
   }, []);
@@ -143,6 +144,8 @@ const UserProvider = (props) => {
     }
   };
 
+  const taxAmount = 0.07 * getCartSubtotal();
+
   useDeliveryMethod(
     cartIds,
     getCartSubtotal,
@@ -182,6 +185,8 @@ const UserProvider = (props) => {
         paymentInfo,
         setPaymentInfo,
         setDeliveryMethod,
+        taxAmount,
+        loadError,
       }}
     />
   );

@@ -22,6 +22,10 @@
   overflow: scroll;
  }
 
+ .cartPriceContainer hr {
+   margin: auto;
+ }
+
  .promoContainer {
   margin-left: 37px;
   margin-top: -30px;
@@ -63,16 +67,18 @@
  .cartShipping, 
  .cartDiscount,
  .cartTotal,
- .cartSubTotal {
-   padding-right: 20px;
-   padding-left: 20px;
+ .cartSubTotal, 
+ .cartTax {
+   padding-right: 30px;
+   padding-left: 30px;
  }
 
  .itemSummary,
  .cartSubTotal,
  .cartShipping,
  .cartDiscount,
- .cartTotal {
+ .cartTotal, 
+ .cartTax {
    display: flex;
    justify-content: space-between;
    margin-bottom: 10px;

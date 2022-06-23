@@ -26,6 +26,7 @@ function Cart(props) {
     cartDiscount,
     discountType,
     setDiscountType,
+    taxAmount,
   } = useContext(userContext);
 
   const navigate = useNavigate();
@@ -104,6 +105,9 @@ function Cart(props) {
             <div className={s.cartSubTotal}>
               <p>Cart Subtotal</p>${cartSubtotal}
             </div>
+            <div className={s.cartTax}>
+              <p>Tax</p>${taxAmount}
+            </div>
             <div className={s.cartDiscount}>
               <p>Discounts</p>
               <p id="discountAmount">
@@ -116,7 +120,12 @@ function Cart(props) {
             </div>
             <div className={s.cartTotal}>
               <h4>Cart Total</h4>
-              <p>${cartSubtotal - (isNaN(cartDiscount) ? 0 : cartDiscount)}</p>
+              <p>
+                $
+                {cartSubtotal -
+                  (isNaN(cartDiscount) ? 0 : cartDiscount) +
+                  taxAmount}
+              </p>
             </div>
           </div>
           <hr />

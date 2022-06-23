@@ -17,6 +17,7 @@ function ShopDisplay(props) {
     products,
     quantityError,
     setQuantityError,
+    loadError,
   } = useContext(userContext);
 
   const [productFilter, setProductFilter] = useState([]);
@@ -149,6 +150,7 @@ function ShopDisplay(props) {
               />
             </>
           )}
+          {loadError && <h3 className="text-danger">Error loading data</h3>}
         </div>
       </div>
     </div>

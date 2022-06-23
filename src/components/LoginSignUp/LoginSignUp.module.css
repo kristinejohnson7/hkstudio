@@ -45,6 +45,10 @@
   font-size: 13px;
 }
 
+.selectionSignIn input {
+  margin-right: 10px;
+}
+
 .inputFields {
   margin-top: 30px;
 }

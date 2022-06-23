@@ -67,16 +67,6 @@ function Payment(props) {
           securityCodeError: errorText,
         }));
         return errorText;
-      // case 'expiryMonth':
-      //     errorText = cardExpireValidation(this.state.cardData.expiry);
-      //     setError((prevState) => ({ ...prevState, expiryError: errorText }));
-
-      //     this.setState(prevState => ({ error: {...prevState.error, expiryError: errorText}}))
-      //     break;
-      // case 'expiryYear':
-      //     errorText = cardExpireValidation(this.state.cardData.expiry);
-      //     this.setState(prevState => ({ error: {...prevState.error, expiryError: errorText}}))
-      //     break;
       default:
         break;
     }

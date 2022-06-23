@@ -3,6 +3,7 @@ import Header from "../Header/Header";
 import s from "./CartSummary.module.css";
 import CheckoutButton from "../Buttons/CheckoutButton";
 import { userContext } from "../Helper/Context";
+import SubHeader from "../Header/SubHeader";
 
 function CartSummary(props) {
   const {
@@ -14,6 +15,7 @@ function CartSummary(props) {
     cartIds,
     shippingData,
     user,
+    taxAmount,
   } = useContext(userContext);
   const { paymentDetails, paySummary, paymentBtn } = props;
 
@@ -24,7 +26,6 @@ function CartSummary(props) {
   const lastFourOfCC =
     paymentInfo.card === undefined ? 0 : paymentInfo.card.slice(-4);
 
-  console.log("paymentInfo", paymentInfo);
   return (
     <div className={s.cartPriceContainer}>
       <Header title="Order Summary" />
@@ -58,6 +59,9 @@ function CartSummary(props) {
         <div className={s.cartSubTotal}>
           <p>Cart Subtotal</p>${cartSubtotal}
         </div>
+        <div className={s.cartTax}>
+          <p>Tax</p>${taxAmount}
+        </div>
         <div className={s.cartShipping}>
           <p>Discounts</p>
           <p> ${cartDiscount.toFixed(2)} </p>
@@ -68,7 +72,7 @@ function CartSummary(props) {
         </div>
         <div className={s.cartTotal}>
           <h4>Cart Total</h4>
-          <p>${cartSubtotal - cartDiscount + shipping}</p>
+          <p>${cartSubtotal - cartDiscount + shipping + taxAmount}</p>
         </div>
       </div>
       <hr />
@@ -84,7 +88,7 @@ function CartSummary(props) {
       )}
       {paymentDetails && (
         <>
-          <Header title="Payment" />
+          <SubHeader title="Payment" />
           <div className={s.paymentCardDetails}>
             <p>Total Charge: ${cartSubtotal - cartDiscount + deliveryCost}</p>
             <p>Card Charged: {lastFourOfCC}</p>
@@ -94,7 +98,7 @@ function CartSummary(props) {
       {paySummary && (
         <div>
           <div>
-            <Header title="Shipment Address" />
+            <SubHeader title="Shipment Address" />
             <div className={s.shippingAddress}>
               <p>{shippingData.name}</p>
               <p>{user.email}</p>
@@ -106,7 +110,7 @@ function CartSummary(props) {
             </div>
           </div>
           <div className={s.shippingMethod}>
-            <Header title="Shipment Method" />
+            <SubHeader title="Shipment Method" />
             <div className={s.deliveryText}>
               <h4>{deliveryMethodText}</h4>
               <p>
