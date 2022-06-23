@@ -9,7 +9,6 @@ const DisplayItem = (props) => {
   const {
     close,
     item,
-    addItemToCart,
     handleIncrementAction,
     cartIds,
     user,
@@ -19,8 +18,6 @@ const DisplayItem = (props) => {
   const itemInCart = cartIds.find((id) => item.id === id.id);
 
   let navigate = useNavigate();
-  console.log("display items", cartIds);
-  console.log("item in cart quantity", itemInCart);
 
   return (
     <div className={s.displayItemContainer}>

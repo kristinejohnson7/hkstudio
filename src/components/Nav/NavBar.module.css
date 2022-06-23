@@ -66,8 +66,6 @@
   display: flex;
   align-items: center;
   justify-content: center;
-
-
 }
 
 .cartNav span {
@@ -76,9 +74,18 @@
   font-size: 12px;
 }
 
+@media only screen and (max-width: 900px) {
+  .cartNav {
+    right: -48px;
+  }
+}
 
 @media only screen and (max-width: 600px) {
   .navItems {
     flex-wrap: wrap;
+  }
+
+  .cartNav {
+    right: 0;
   }
 }

@@ -3,7 +3,7 @@ import CartSummary from "../Cart/CartSummary";
 import s from "./Payment.module.css";
 import CartFormContainer from "../Cart/CartFormContainer";
 import ProgressBar from "../ProgressBar/ProgressBar";
-import { OTHERCARDS } from "../cardVariables.js";
+import { OTHERCARDS } from "../../constantVariables/cardVariables.js";
 import { useNavigate } from "react-router-dom";
 import { userContext } from "../Helper/Context";
 import {
@@ -11,7 +11,7 @@ import {
   onlyTextValidation,
   cardExpireValidation,
   securityCodeValidation,
-} from "../validations";
+} from "../../constantVariables/validations";
 
 const INIT_CARD = {
   card: "",
@@ -20,7 +20,7 @@ const INIT_CARD = {
   securityCode: "",
 };
 
-function Payment(props) {
+function Payment() {
   const { user, setPaymentInfo } = useContext(userContext);
 
   const [cardData, setCardData] = useState(INIT_CARD);

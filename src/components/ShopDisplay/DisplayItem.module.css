@@ -95,3 +95,30 @@
   font-weight: 600;
   color: #16558A;
 }
+
+@media only screen and (max-width: 950px) {
+  .itemContainer {
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: center;
+  }
+}
+
+@media only screen and (max-width: 750px) {
+  .carousel-inner {
+    height: 524px;
+    width: 337px;
+  }
+}
+
+
+@media only screen and (max-width: 550px) {
+  .itemInfo {
+    margin-top: -40px;
+  }
+
+}
+
+
+
+

@@ -1,35 +1,23 @@
 import React, { useContext, useState } from "react";
-import BackButton from "../Buttons/BackButton";
 import s from "./Shipping.module.css";
-import { onlyNumberValidation } from "../validations";
+import { onlyNumberValidation } from "../../constantVariables/validations";
 import CartSummary from "../Cart/CartSummary";
 import CartFormContainer from "../Cart/CartFormContainer";
 import ProgressBar from "../ProgressBar/ProgressBar";
 import { userContext } from "../Helper/Context";
 import { useNavigate } from "react-router-dom";
 
-function Shipping(props) {
+function Shipping() {
   const [error, setError] = useState([]);
-  const { shippingData, setShippingData, setDeliveryMethod } = useContext(
-    userContext
-  );
+  const { setShippingData, setDeliveryMethod } = useContext(userContext);
 
   const navigate = useNavigate();
 
   const handleValidations = (type, value) => {
     let errorText;
-    errorText = onlyNumberValidation(value);
-    switch (type) {
-      case "zip":
-        setError((prevState) => ({ ...prevState, zipError: errorText }));
-        break;
-      case "phone":
-        setError((prevState) => ({ ...prevState, phoneError: errorText }));
-        break;
-      default:
-        setError((prevState) => ({ ...prevState, [`${type}Error`]: null }));
-        break;
-    }
+    errorText =
+      type === "zip" || type === "phone" ? onlyNumberValidation(value) : null;
+    setError((prevState) => ({ ...prevState, [`${type}Error`]: errorText }));
     return errorText;
   };
 
@@ -77,8 +65,6 @@ function Shipping(props) {
       navigate("/cart/payment");
     }
   };
-
-  console.log("error", error);
 
   return (
     <div className={s.cartBg}>

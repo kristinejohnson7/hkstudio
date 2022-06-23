@@ -9,9 +9,7 @@ import { userContext } from "../Helper/Context";
 import { useNavigate } from "react-router-dom";
 
 function CartFormContainer(props) {
-  const { cartIds, setCartIds, itemsInCart, deliveryCost } = useContext(
-    userContext
-  );
+  const { cartIds, setCartIds, itemsInCart } = useContext(userContext);
   const {
     onPaymentFormSubmit,
     error,

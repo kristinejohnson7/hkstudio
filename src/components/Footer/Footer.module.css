@@ -1,0 +1,50 @@
+.footerContainer {
+  background-color: #EDECE8;
+  box-shadow: rgba(0, 0, 0, 0.15) 0px 5px 15px 0px;
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: space-around;
+  padding: 20px;
+}
+
+.footerLogo {
+  width: 127px;
+}
+
+.footerLogo img {
+  width: 100%;
+}
+
+.footerInfoWrapper {
+  display: flex;
+  justify-content: space-between;
+  gap: 60px;
+}
+
+.contactInfo {
+  overflow-wrap: break-word;
+  width: 130px;
+}
+
+.socialItem {
+  display: flex;
+  align-items: center;
+  gap: 7px;
+  margin-bottom: 12px;
+}
+
+.socialItem a:hover {
+  color: white;
+}
+
+.socialIcon {
+  width: 30px;
+  height: 30px;
+  border-radius: 50%;
+  background-color: #ffffff;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #B1BDAD;
+}

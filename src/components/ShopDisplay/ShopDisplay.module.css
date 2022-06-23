@@ -83,16 +83,6 @@ h2, h3 {
   background-color: transparent;
 }
 
-/* .loginBtn {
-  margin-top: 20px;
-  display: none;
-}
-
-.loginBtn button {
-  width: 10%;
-  margin: 20px auto;
-} */
-
 .shopItems {
   display: flex;
   justify-content: center;
@@ -137,5 +127,9 @@ h2, h3 {
 @media only screen and (max-width: 800px) {
    .shopHeader button {
     width: 33%;
+   }
+
+   .productSearch {
+     flex-wrap: wrap;
    }
 }

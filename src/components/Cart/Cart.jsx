@@ -1,6 +1,5 @@
 import React, { useContext, useState } from "react";
 import s from "./Cart.module.css";
-import BackButton from "../Buttons/BackButton";
 import Header from "../Header/Header";
 import CartFormContainer from "./CartFormContainer";
 import Button from "../Buttons/Button";
@@ -9,22 +8,14 @@ import ProgressBar from "../ProgressBar/ProgressBar";
 import { userContext } from "../Helper/Context";
 import { useNavigate } from "react-router-dom";
 
-function Cart(props) {
+function Cart() {
   const [promoError, setPromoError] = useState("");
   const {
-    user,
     cartIds,
-    handleIncrementAction,
-    removeItemFromCart,
     itemsInCart,
-    addItemToCart,
-    loading,
-    products,
-    countCartItems,
     cartSubtotal,
     setCartDiscount,
     cartDiscount,
-    discountType,
     setDiscountType,
     taxAmount,
   } = useContext(userContext);

@@ -20,7 +20,6 @@ class ProductData {
         });
         if (response.ok) {
           const json = await response.json();
-          console.log("json img", json.data);
           const data = json.data.map((item) => ({
             desc: item.description,
             itemImg: item.assets,

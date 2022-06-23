@@ -9,7 +9,6 @@ function ShopDisplay(props) {
   const {
     user,
     cartIds,
-    setCartIds,
     handleIncrementAction,
     removeItemFromCart,
     addItemToCart,

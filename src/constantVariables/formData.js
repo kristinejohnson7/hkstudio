@@ -1,93 +1,89 @@
-import LookForJoy from "./assets/product-pics/item-8.jpeg";
-import StillWaters from "./assets/product-pics/item-7.jpeg";
-import GoldenHour from "./assets/product-pics/item-6.jpeg";
-import TheOtherSide from "./assets/product-pics/item-3.jpeg";
-import NewGrowth from "./assets/product-pics/item-1.jpeg";
-import RememberWhatMatters from "./assets/product-pics/item-2.jpeg";
-import BrandNewDay from "./assets/product-pics/item-10.jpeg";
-import HeartAndSoul from "./assets/product-pics/item-11.jpeg";
+export const shippingInputData = [
+  {
+    id: 1,
+    label: "Type of Address",
+    name: "typeOfAddress",
+    type: "text",
+    error: "typeOfAddressError",
+  },
+  {
+    id: 2,
+    label: "Name - Surname",
+    name: "name",
+    type: "text",
+    error: "nameError",
+  },
+  {
+    id: 3,
+    label: "Your Address",
+    name: "address",
+    type: "text",
+    error: "addressError",
+  },
+];
 
-export const fakeUser = {
-  email: "fake@devslopes.com",
-  password: "Devslopes0!",
-  cart: undefined,
-  shipping: undefined,
-  payment: undefined,
-  firstName: "Kristine",
-  lastName: "Johnson",
-  zip: "40241",
-};
+export const locationInputData = [
+  {
+    id: 1,
+    label: "Phone",
+    name: "phone",
+    type: "tel",
+    error: "phoneError",
+  },
+  {
+    id: 2,
+    label: "Zip",
+    name: "zip",
+    type: "text",
+    error: "zipError",
+  },
+  {
+    id: 3,
+    label: "City",
+    name: "city",
+    type: "text",
+    error: "cityError",
+  },
+  {
+    id: 4,
+    label: "State/Province",
+    name: "state",
+    type: "text",
+    error: "stateError",
+  },
+];
 
-export const shopComponents = {
-  shopDisplay: {
-    display: true,
-    items: [
-      {
-        name: `"Look For The Joy"`,
-        price: 125,
-        img: LookForJoy,
-        key: 1,
-      },
-      {
-        name: `"Still Waters"`,
-        price: 125,
-        img: StillWaters,
-        key: 2,
-      },
-      {
-        name: `"Golden Hour"`,
-        price: 125,
-        img: GoldenHour,
-        key: 3,
-      },
-      {
-        name: `"The Other Side"`,
-        price: 75,
-        img: TheOtherSide,
-        key: 4,
-      },
-      {
-        name: `"New Growth"`,
-        price: 85,
-        img: NewGrowth,
-        key: 5,
-      },
-      {
-        name: `"Remember What Matters"`,
-        price: 110,
-        img: RememberWhatMatters,
-        key: 6,
-      },
-      {
-        name: `"It's A Brand New Day"`,
-        price: 985,
-        img: BrandNewDay,
-        key: 7,
-      },
-      {
-        name: `"Heart and Soul"`,
-        price: 125,
-        img: HeartAndSoul,
-        key: 8,
-      },
-    ],
+export const paymentData = [
+  {
+    id: 1,
+    label: "Cardholder Name",
+    type: "text",
+    name: "cardHolder",
+    error: "cardHolderError",
   },
-  login: {
-    display: false,
+  {
+    id: 2,
+    label: "Card Number",
+    type: "text",
+    name: "card",
+    error: "cardError",
   },
-  cart: {
-    display: false,
+];
+
+export const shippingMethods = [
+  {
+    id: 1,
+    defaultChecked: true,
+    message: "Delivery in 4-6 Business Days - Free ($250 min)",
+    value: "Standard",
   },
-  shipping: {
-    display: false,
+  {
+    id: 2,
+    defaultChecked: false,
+    message: "Delivery in 1-3 Business Days - $50",
+    value: "Express",
   },
-  payment: {
-    display: false,
-  },
-  confirm: {
-    display: false,
-  },
-};
+];
 
 export const monthList = [
   "",

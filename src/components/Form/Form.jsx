@@ -1,18 +1,24 @@
 import React, { useContext } from "react";
 import s from "./Form.module.css";
-import { countryList } from "../variables";
 import InputLabel from "../Form/InputLabel";
 import Header from "../Header/Header";
-import { monthList, yearList } from "../variables";
 import CheckoutButton from "../Buttons/CheckoutButton";
 import { userContext } from "../Helper/Context";
+import {
+  shippingInputData,
+  locationInputData,
+  paymentData,
+  shippingMethods,
+  monthList,
+  yearList,
+  countryList,
+} from "../../constantVariables/formData";
 
 function Form(props) {
   const {
     handleDeliveryMethod,
     deliveryCost,
     cartSubtotal,
-    itemsInCart,
     cartDiscount,
   } = useContext(userContext);
 
@@ -26,7 +32,6 @@ function Form(props) {
     handleInputData,
     cardData,
     cardType,
-    discountAmount,
     handleValidations,
   } = props;
 
@@ -34,87 +39,6 @@ function Form(props) {
     handleValidations(name, value);
     return;
   };
-
-  let shippingInputData = [
-    {
-      id: 1,
-      label: "Type of Address",
-      name: "typeOfAddress",
-      type: "text",
-      error: "typeOfAddressError",
-      blur: handleBlur,
-    },
-    {
-      id: 2,
-      label: "Name - Surname",
-      name: "name",
-      type: "text",
-      error: "nameError",
-      blur: handleBlur,
-    },
-    {
-      id: 3,
-      label: "Your Address",
-      name: "address",
-      type: "text",
-      error: "addressError",
-      blur: handleBlur,
-    },
-  ];
-
-  let locationInputData = [
-    {
-      id: 1,
-      label: "Phone",
-      name: "phone",
-      type: "tel",
-      error: "phoneError",
-      blur: handleBlur,
-    },
-    {
-      id: 2,
-      label: "Zip",
-      name: "zip",
-      type: "text",
-      error: "zipError",
-      blur: handleBlur,
-    },
-    {
-      id: 3,
-      label: "City",
-      name: "city",
-      type: "text",
-      error: "cityError",
-      blur: handleBlur,
-    },
-    {
-      id: 4,
-      label: "State/Province",
-      name: "state",
-      type: "text",
-      error: "stateError",
-      blur: handleBlur,
-    },
-  ];
-
-  let paymentData = [
-    {
-      id: 1,
-      label: "Cardholder Name",
-      type: "text",
-      name: "cardHolder",
-      error: "cardHolderError",
-      blur: handleBlur,
-    },
-    {
-      id: 2,
-      label: "Card Number",
-      type: "text",
-      name: "card",
-      error: "cardError",
-      blur: handleBlur,
-    },
-  ];
 
   const data = shipping ? shippingInputData : paymentData;
 
@@ -136,7 +60,7 @@ function Form(props) {
             name={input.name}
             type={input.type}
             error={input.error}
-            onBlur={input.blur}
+            onBlur={handleBlur}
             value={cardData && cardData[input.name]}
             onChange={handleInputData}
             cardType={cardType}
@@ -156,7 +80,7 @@ function Form(props) {
                   key={input.id}
                   label={input.label}
                   name={input.name}
-                  onBlur={input.blur}
+                  onBlur={handleBlur}
                   type={input.type}
                   errorM={
                     error && error[input.error] && error[input.error].length > 1
@@ -181,26 +105,19 @@ function Form(props) {
             <div className={s.shippingSelection}>
               <Header title="Shipping Method" />
               <div className={s.shippingRadioBtns}>
-                <label>
-                  <input
-                    onClick={(e) => handleDeliveryMethod(e, cartSubtotal)}
-                    type="radio"
-                    name="deliveryType"
-                    defaultChecked
-                    value="Standard"
-                  />
-                  STANDARD:
-                  <span>Delivery in 4-6 Business Days - Free ($250 min)</span>
-                </label>
-                <label>
-                  <input
-                    onClick={(e) => handleDeliveryMethod(e, cartSubtotal)}
-                    type="radio"
-                    name="deliveryType"
-                    value="Express"
-                  />
-                  EXPRESS:<span>Delivery in 1-3 Business Days - $50</span>
-                </label>
+                {shippingMethods.map((item) => (
+                  <label>
+                    <input
+                      key={item.id}
+                      onClick={(e) => handleDeliveryMethod(e, cartSubtotal)}
+                      type="radio"
+                      name="deliveryType"
+                      defaultChecked={item.defaultChecked}
+                      value={item.value}
+                    />
+                    {item.value.toUpperCase()}:<span>{item.message}</span>
+                  </label>
+                ))}
               </div>
             </div>
             <button id="submitButton" style={{ visibility: "hidden" }}>

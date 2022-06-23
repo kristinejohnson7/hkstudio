@@ -12,6 +12,7 @@ import Payment from "./components/Payment/Payment";
 import Confirm from "./components/ConfirmPayment/ConfirmPayment";
 import Home from "./components/Home/Home";
 import UserProvider from "./components/Helper/Context";
+import Footer from "./components/Footer/Footer";
 
 function App() {
   return (
@@ -23,12 +24,13 @@ function App() {
         <Route path="/login" element={<LoginSignUp />} />
         <Route path="/cart" element={<Checkout />}>
           <Route path="/cart" element={<Cart cart="true" />} />
-          <Route path="/cart/shipping" element={<Shipping shipping="true" />} />
+          <Route path="shipping" element={<Shipping shipping="true" />} />
           <Route path="payment" element={<Payment payment="true" />} />
           <Route path="confirm" element={<Confirm confirm="true" />} />
         </Route>
         <Route path="*" element={<NoMatch />} />
       </Routes>
+      <Footer />
     </UserProvider>
   );
 }

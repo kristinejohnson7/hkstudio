@@ -18,9 +18,6 @@ function CartItem(props) {
   const itemQuantity = cartIds.find((id) => cartObj.id === id.id);
   const itemInCart = products.find((product) => cartObj.id == product.id);
 
-  console.log("itemQuantity", itemQuantity);
-  console.log("iteminCart", itemInCart);
-
   return (
     <div className={s.item}>
       <div className={s.imageBox}>

@@ -6,6 +6,8 @@ ul {
 
 a {
   text-decoration: none;
+  color: 	#3b444b;
+  cursor: pointer;
 }
 
 .inputWrapper {
@@ -48,7 +50,21 @@ h3 {
   width: 500px;
 }
 
-
 .carousel-control-next, .carousel-control-prev {
   opacity: .99;
+}
+
+
+@media only screen and (max-width: 750px) {
+  .carousel-inner {
+    height: 524px;
+    width: 337px;
+  }
+}
+
+@media only screen and (max-width: 450px) {
+  .carousel-inner {
+    height: 374px;
+    width: 237px;
+  }
 }

@@ -4,8 +4,8 @@ import {
   onlyTextValidation,
   onlyNumberValidation,
   passwordValidation,
-} from "../validations";
-import { fakeUser } from "../variables";
+} from "../../constantVariables/validations";
+import { fakeUser } from "../../constantVariables/userVariables";
 import { useNavigate } from "react-router-dom";
 import s from "./LoginSignUp.module.css";
 import CheckoutButton from "../Buttons/CheckoutButton";
@@ -24,17 +24,11 @@ const LoginSignUp = (props) => {
     let errorText;
     switch (type) {
       case "firstName":
-        errorText = onlyTextValidation(value);
-        setError((prevState) => ({
-          ...prevState.error,
-          firstNameError: errorText,
-        }));
-        break;
       case "lastName":
         errorText = onlyTextValidation(value);
         setError((prevState) => ({
           ...prevState.error,
-          lastNameError: errorText,
+          [`${type}Error`]: errorText,
         }));
         break;
       case "zip":
@@ -114,10 +108,10 @@ const LoginSignUp = (props) => {
       userData.lastName = fakeUser.lastName;
     }
     const errorCheck = checkErrorBeforeSave(userData);
-    // if (!errorCheck) {
-    setUser(userData);
-    navigate("/");
-    // }
+    if (!errorCheck) {
+      setUser(userData);
+      navigate("/");
+    }
   };
 
   let loginHeader = "Create Account";
