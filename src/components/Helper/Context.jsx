@@ -55,13 +55,14 @@ const UserProvider = (props) => {
     );
   }, []);
 
-  const getCartSubtotal = () => {
+  const getCartSubtotal = (newerItemsInCart) => {
     let cartItems = "";
-    const itemPrice = itemsInCart.map(
-      (item) =>
-        item.price *
-        cartIds.find((cartItem) => item.id === cartItem.id).quantity
-    );
+    const itemPrice = itemsInCart.map((item) => {
+      const itemQuantity = (newerItemsInCart || cartIds).find(
+        (cartItem) => item.id === cartItem.id
+      ) || { quantity: 0 };
+      return item.price * itemQuantity.quantity;
+    });
 
     const sum = itemPrice.reduce((total, current) => {
       return total + current;
@@ -69,11 +70,12 @@ const UserProvider = (props) => {
     return sum;
   };
 
-  const calculateCartDiscount = () => {
+  const calculateCartDiscount = (newerItemsInCart) => {
     if (discountType === 0) {
       return 0;
     } else {
-      const newDiscount = discountType.amount * getCartSubtotal();
+      const newDiscount =
+        discountType.amount * getCartSubtotal(newerItemsInCart);
       setCartDiscount(newDiscount);
       return newDiscount;
     }
@@ -86,11 +88,6 @@ const UserProvider = (props) => {
   const addItemToCart = (id) => {
     const newIds = [...cartIds, { id, quantity: 1 }];
     setCartIds((prevState) => [...prevState, { id, quantity: 1 }]);
-  };
-
-  const removeItemFromCart = (id) => {
-    const newIds = cartIds.filter((cart) => cart.id !== id);
-    setCartIds(newIds);
   };
 
   const countCartItems = () => {
@@ -153,6 +150,9 @@ const UserProvider = (props) => {
     deliveryMethod
   );
 
+  console.log("discountType", discountType);
+  console.log("cartDiscont", cartDiscount);
+
   return (
     <Provider
       {...props}
@@ -162,7 +162,6 @@ const UserProvider = (props) => {
         cartIds,
         setCartIds,
         addItemToCart,
-        removeItemFromCart,
         handleIncrementAction,
         countCartItems,
         products,
@@ -187,6 +186,7 @@ const UserProvider = (props) => {
         setDeliveryMethod,
         taxAmount,
         loadError,
+        calculateCartDiscount,
       }}
     />
   );

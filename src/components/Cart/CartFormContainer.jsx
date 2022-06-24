@@ -95,7 +95,13 @@ function CartFormContainer(props) {
             </p>
           </div>
           <Button title="Track Your Order" />
-          <Button title="BACK TO THE SHOP" onClick={() => navigate("/")} />
+          <Button
+            title="BACK TO THE SHOP"
+            onClick={() => {
+              navigate("/");
+              setCartIds([]);
+            }}
+          />
         </div>
       )}
     </div>

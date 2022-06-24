@@ -5,9 +5,13 @@ import { userContext } from "../Helper/Context";
 function CartItem(props) {
   const {
     cartIds,
+    setCartIds,
     handleIncrementAction,
-    removeItemFromCart,
     products,
+    calculateCartDiscount,
+    cartSubtotal,
+    discountType,
+    setCartDiscount,
   } = useContext(userContext);
   const [quantityError, setQuantityError] = useState("");
 
@@ -59,7 +63,13 @@ function CartItem(props) {
           <div className={s.amount}>${itemInCart.price}</div>
           <div
             className={s.remove}
-            onClick={() => removeItemFromCart(cartObj.id)}
+            onClick={() => {
+              const newerItemsInCart = cartIds.filter(
+                (cart) => cart.id !== cartObj.id
+              );
+              setCartIds(newerItemsInCart);
+              calculateCartDiscount(newerItemsInCart);
+            }}
           >
             <u>Remove</u>
           </div>
