@@ -8,9 +8,9 @@ import { useNavigate } from "react-router-dom";
 function ShopDisplay(props) {
   const {
     user,
-    cartIds,
+    itemsInCart,
+    setItemsInCart,
     handleIncrementAction,
-    removeItemFromCart,
     addItemToCart,
     loading,
     products,
@@ -117,9 +117,13 @@ function ShopDisplay(props) {
                 </button>
                 <h3>{product.name}</h3>
                 <p>${product.price}</p>
-                {cartIds.find((cart) => cart.id === product.id) ? (
+                {itemsInCart.find((cart) => cart.id === product.id) ? (
                   <Button
-                    onClick={() => removeItemFromCart(product.id)}
+                    onClick={() =>
+                      setItemsInCart(
+                        itemsInCart.filter((cart) => cart.id !== product.id)
+                      )
+                    }
                     title="REMOVE FROM CART"
                   />
                 ) : (
@@ -140,10 +144,9 @@ function ShopDisplay(props) {
               <DisplayItem
                 handleIncrementAction={handleIncrementAction}
                 addItemToCart={addItemToCart}
-                onRemoveFromCart={removeItemFromCart}
                 close={closeItemPage}
                 item={displayItem}
-                cartIds={cartIds}
+                itemsInCart={itemsInCart}
                 user={user}
                 quantityError={quantityError}
               />

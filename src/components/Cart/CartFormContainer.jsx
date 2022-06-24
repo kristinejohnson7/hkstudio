@@ -9,7 +9,9 @@ import { userContext } from "../Helper/Context";
 import { useNavigate } from "react-router-dom";
 
 function CartFormContainer(props) {
-  const { cartIds, setCartIds, itemsInCart } = useContext(userContext);
+  const { itemsInCart, setItemsInCart, filteredProducts } = useContext(
+    userContext
+  );
   const {
     onPaymentFormSubmit,
     error,
@@ -34,15 +36,15 @@ function CartFormContainer(props) {
         <>
           <div className={s.header}>
             <Header title="Shopping Cart" />
-            <h5 className={s.action} onClick={() => setCartIds([])}>
+            <h5 className={s.action} onClick={() => setItemsInCart([])}>
               Remove all
             </h5>
           </div>
           <div className={s.cartItems}>
-            {itemsInCart.map((item) => {
+            {filteredProducts.map((item) => {
               return (
                 <CartItem
-                  cartObj={cartIds.find((cart) => cart.id === item.id)}
+                  cartObj={itemsInCart.find((cart) => cart.id === item.id)}
                 />
               );
             })}
@@ -99,7 +101,7 @@ function CartFormContainer(props) {
             title="BACK TO THE SHOP"
             onClick={() => {
               navigate("/");
-              setCartIds([]);
+              setItemsInCart([]);
             }}
           />
         </div>

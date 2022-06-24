@@ -10,9 +10,9 @@ function CartSummary(props) {
     paymentInfo,
     deliveryCost,
     cartSubtotal,
-    itemsInCart,
+    filteredProducts,
     cartDiscount,
-    cartIds,
+    itemsInCart,
     shippingData,
     user,
     taxAmount,
@@ -30,7 +30,7 @@ function CartSummary(props) {
     <div className={s.cartPriceContainer}>
       <Header title="Order Summary" />
       <div className={s.summaryContent}>
-        {itemsInCart.map((cartItem) => {
+        {filteredProducts.map((cartItem) => {
           return (
             <div key={cartItem.id} className={s.itemSummary}>
               <div className={s.itemNameAndQuantity}>
@@ -42,11 +42,15 @@ function CartSummary(props) {
                   <div>
                     $
                     {cartItem.price *
-                      cartIds.find((item) => item.id === cartItem.id).quantity}
+                      itemsInCart.find((item) => item.id === cartItem.id)
+                        .quantity}
                   </div>
                   <p>
                     Quantity:{" "}
-                    {cartIds.find((item) => item.id === cartItem.id).quantity}
+                    {
+                      itemsInCart.find((item) => item.id === cartItem.id)
+                        .quantity
+                    }
                   </p>
                 </div>
               </div>

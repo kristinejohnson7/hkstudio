@@ -10,12 +10,12 @@ const DisplayItem = (props) => {
     close,
     item,
     handleIncrementAction,
-    cartIds,
+    itemsInCart,
     user,
     quantityError,
   } = props;
 
-  const itemInCart = cartIds.find((id) => item.id === id.id);
+  const itemInCart = itemsInCart.find((id) => item.id === id.id);
 
   let navigate = useNavigate();
 

@@ -4,14 +4,11 @@ import { userContext } from "../Helper/Context";
 
 function CartItem(props) {
   const {
-    cartIds,
-    setCartIds,
+    itemsInCart,
+    setItemsInCart,
     handleIncrementAction,
     products,
     calculateCartDiscount,
-    cartSubtotal,
-    discountType,
-    setCartDiscount,
   } = useContext(userContext);
   const [quantityError, setQuantityError] = useState("");
 
@@ -19,7 +16,7 @@ function CartItem(props) {
   const desc = "desc";
   const { cartObj } = props;
 
-  const itemQuantity = cartIds.find((id) => cartObj.id === id.id);
+  const itemQuantity = itemsInCart.find((id) => cartObj.id === id.id);
   const itemInCart = products.find((product) => cartObj.id == product.id);
 
   return (
@@ -64,10 +61,10 @@ function CartItem(props) {
           <div
             className={s.remove}
             onClick={() => {
-              const newerItemsInCart = cartIds.filter(
+              const newerItemsInCart = itemsInCart.filter(
                 (cart) => cart.id !== cartObj.id
               );
-              setCartIds(newerItemsInCart);
+              setItemsInCart(newerItemsInCart);
               calculateCartDiscount(newerItemsInCart);
             }}
           >
