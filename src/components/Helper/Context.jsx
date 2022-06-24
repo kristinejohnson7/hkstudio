@@ -7,24 +7,24 @@ export const userContext = createContext({});
 const { Provider } = userContext;
 
 const useDeliveryMethod = (
-  cartIds,
+  itemsInCart,
   getCartSubtotal,
   handleDeliveryMethod,
   deliveryMethod
 ) => {
   useEffect(() => {
-    if (cartIds.length > 0 && !deliveryMethod) {
+    if (itemsInCart.length > 0 && !deliveryMethod) {
       handleDeliveryMethod(
         { target: { value: "Standard" } },
         getCartSubtotal()
       );
     }
-  }, [cartIds, deliveryMethod]);
+  }, [itemsInCart, deliveryMethod]);
 };
 
 const UserProvider = (props) => {
   const [user, setUser] = useState("");
-  const [cartIds, setCartIds] = useState([]);
+  const [itemsInCart, setItemsInCart] = useState([]);
   const [loading, setLoading] = useState(false);
   const [loadError, setLoadError] = useState(false);
   const [products, setProducts] = useState([]);
@@ -57,8 +57,8 @@ const UserProvider = (props) => {
 
   const getCartSubtotal = (newerItemsInCart) => {
     let cartItems = "";
-    const itemPrice = itemsInCart.map((item) => {
-      const itemQuantity = (newerItemsInCart || cartIds).find(
+    const itemPrice = filteredProducts.map((item) => {
+      const itemQuantity = (newerItemsInCart || itemsInCart).find(
         (cartItem) => item.id === cartItem.id
       ) || { quantity: 0 };
       return item.price * itemQuantity.quantity;
@@ -81,30 +81,29 @@ const UserProvider = (props) => {
     }
   };
 
-  const itemsInCart = products.filter((product) =>
-    cartIds.find((cartId) => cartId.id === product.id)
+  const filteredProducts = products.filter((product) =>
+    itemsInCart.find((item) => item.id === product.id)
   );
 
   const addItemToCart = (id) => {
-    const newIds = [...cartIds, { id, quantity: 1 }];
-    setCartIds((prevState) => [...prevState, { id, quantity: 1 }]);
+    setItemsInCart((prevState) => [...prevState, { id, quantity: 1 }]);
   };
 
   const countCartItems = () => {
-    const sum = cartIds.reduce((total, current) => {
+    const sum = itemsInCart.reduce((total, current) => {
       return total + current.quantity;
     }, 0);
     return sum;
   };
 
   const handleIncrementAction = (item, count) => {
-    const oldCartIds = [...cartIds];
-    let incrementObj = oldCartIds.find((obj) => obj.id === item);
+    const oldItemsInCart = [...itemsInCart];
+    let incrementObj = oldItemsInCart.find((obj) => obj.id === item);
 
     if (!incrementObj) {
       addItemToCart(item);
-      oldCartIds.push({ id: item, quantity: 1 });
-      incrementObj = oldCartIds.find((obj) => obj.id === item);
+      oldItemsInCart.push({ id: item, quantity: 1 });
+      incrementObj = oldItemsInCart.find((obj) => obj.id === item);
     }
     if (count === "asc") {
       const databaseQuantity = products.find(
@@ -118,12 +117,12 @@ const UserProvider = (props) => {
         setQuantityError("");
       }
       incrementObj.quantity += 1;
-      setCartIds(oldCartIds);
+      setItemsInCart(oldItemsInCart);
       calculateCartDiscount();
     } else if (count === "desc") {
       incrementObj.quantity -= 1;
       setQuantityError("");
-      setCartIds(oldCartIds.filter((cart) => cart.quantity > 0));
+      setItemsInCart(oldItemsInCart.filter((cart) => cart.quantity > 0));
       calculateCartDiscount();
     }
   };
@@ -144,14 +143,11 @@ const UserProvider = (props) => {
   const taxAmount = 0.07 * getCartSubtotal();
 
   useDeliveryMethod(
-    cartIds,
+    itemsInCart,
     getCartSubtotal,
     handleDeliveryMethod,
     deliveryMethod
   );
-
-  console.log("discountType", discountType);
-  console.log("cartDiscont", cartDiscount);
 
   return (
     <Provider
@@ -159,15 +155,15 @@ const UserProvider = (props) => {
       value={{
         user,
         setUser,
-        cartIds,
-        setCartIds,
+        itemsInCart,
+        setItemsInCart,
         addItemToCart,
         handleIncrementAction,
         countCartItems,
         products,
         setProducts,
         loading,
-        itemsInCart,
+        filteredProducts,
         cartSubtotal: getCartSubtotal(),
         quantityError,
         setQuantityError,

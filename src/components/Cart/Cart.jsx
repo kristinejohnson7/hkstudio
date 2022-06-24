@@ -11,8 +11,8 @@ import { useNavigate } from "react-router-dom";
 function Cart() {
   const [promoError, setPromoError] = useState("");
   const {
-    cartIds,
     itemsInCart,
+    filteredProducts,
     cartSubtotal,
     setCartDiscount,
     cartDiscount,
@@ -72,20 +72,24 @@ function Cart() {
           </div>
           <hr />
           <div className={s.summaryContent}>
-            {itemsInCart.map((cartItem) => {
+            {filteredProducts.map((cartItem) => {
               return (
                 <div key={cartItem.id} className={s.itemSummary}>
                   <div className={s.itemNameAndQuantity}>
                     <h5>{cartItem.name}</h5>
                     <p>
                       Quantity:{" "}
-                      {cartIds.find((item) => item.id === cartItem.id).quantity}
+                      {
+                        itemsInCart.find((item) => item.id === cartItem.id)
+                          .quantity
+                      }
                     </p>
                   </div>
                   <div>
                     $
                     {cartItem.price *
-                      cartIds.find((item) => item.id === cartItem.id).quantity}
+                      itemsInCart.find((item) => item.id === cartItem.id)
+                        .quantity}
                   </div>
                 </div>
               );
@@ -121,7 +125,7 @@ function Cart() {
           </div>
           <hr />
           <div className={s.checkoutBtn}>
-            {cartIds.length ? (
+            {itemsInCart.length ? (
               <button onClick={() => navigate("/cart/shipping")}>
                 CHECKOUT
               </button>
