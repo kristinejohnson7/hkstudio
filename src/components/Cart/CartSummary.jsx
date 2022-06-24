@@ -64,7 +64,7 @@ function CartSummary(props) {
           <p>Cart Subtotal</p>${cartSubtotal}
         </div>
         <div className={s.cartTax}>
-          <p>Tax</p>${taxAmount}
+          <p>Tax</p>${taxAmount.toFixed(2)}
         </div>
         <div className={s.cartShipping}>
           <p>Discounts</p>

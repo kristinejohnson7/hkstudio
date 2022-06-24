@@ -101,7 +101,7 @@ function Cart() {
               <p>Cart Subtotal</p>${cartSubtotal}
             </div>
             <div className={s.cartTax}>
-              <p>Tax</p>${taxAmount}
+              <p>Tax</p>${taxAmount.toFixed(2)}
             </div>
             <div className={s.cartDiscount}>
               <p>Discounts</p>
